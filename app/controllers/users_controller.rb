@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-<<<<<<< HEAD
-=======
 
   before_action :find_user, except: [ :create ]
 
@@ -32,5 +30,4 @@ class UsersController < ApplicationController
   def find_user
     @user = User.find_by!(id: session[:user_id])
   end
->>>>>>> user
 end
