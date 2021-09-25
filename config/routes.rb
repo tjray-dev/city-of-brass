@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
   
-<<<<<<< HEAD
-  resources :users
-  
-=======
+  resources :characters, only: [ :create ]
   resources :users, only: [ :create, :show, :update, :destroy ]
 
   get '/me', to: 'users#show'
@@ -11,6 +8,5 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
 
->>>>>>> user
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end
