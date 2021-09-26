@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :characters, only: [ :create, :show, :update, :destroy ]
   resources :users, only: [ :create, :show, :update, :destroy ]
 
   get '/me', to: 'users#show'

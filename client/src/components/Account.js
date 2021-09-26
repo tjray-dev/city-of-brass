@@ -22,7 +22,7 @@ const Account = ({ user, setUser,  handleUser }) =>{
       :
       <button onClick={ () => setUpdate(!update) }>Edit Account</button>
     }
-    <button onClick={() => history.push('/creation')}>Character Creation</button>
+    <button onClick={() => history.push('/character')}>Character Creation</button>
     </>
   )
 }
