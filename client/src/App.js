@@ -5,7 +5,7 @@ import LandingPage from './components/LandingPage'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import Account from './components/Account'
-
+import Character from './components/Character'
 
 function App() {
 
@@ -35,6 +35,9 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/character">
+          <Character />
+        </Route>
         <Route path="/account">
           <Account user={user} 
                    setUser={setUser} 
