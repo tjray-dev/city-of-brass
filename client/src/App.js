@@ -1,17 +1,24 @@
 import { BrowserRouter, Switch, Route, useHistory } from "react-router-dom"
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 
 import LandingPage from './components/LandingPage'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import Account from './components/Account'
 import Character from './components/Character'
+import Room from './components/Room'
 
 function App() {
 
-  const [user, setUser] = useState()
+  // State
+      // user
+      // Character
+      // Monster
+      // Room
+      // Skills
+      // Items
 
-  const history = useHistory()
+  // const history = useHistory()
 
   // useEffect(() => {
   //   fetch("/me").then( r => {
@@ -25,36 +32,24 @@ function App() {
   //     }
   //   });
   // }, []);
-
-  const handleUser = e => {
-    setUser({...user,
-    [e.target.name]: e.target.value 
-    })
-  }
   
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/room">
+          <Room />
+        </Route>
         <Route path="/character">
           <Character />
         </Route>
         <Route path="/account">
-          <Account user={user} 
-                   setUser={setUser} 
-                   handleUser={handleUser}
-          />
+          <Account />
         </Route>
         <Route path="/signup">
-          <SignUp user={user} 
-                  setUser={setUser} 
-                  handleUser={handleUser}
-          />
+          <SignUp />
         </Route>
         <Route path="/login">
-          <Login user={user} 
-                 setUser={setUser} 
-                 handleUser={handleUser}
-          />
+          <Login />
         </Route>
         <Route path="/">
           <LandingPage />
