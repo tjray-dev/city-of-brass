@@ -1,8 +1,26 @@
 import { useHistory } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 
-const UpdateUserForm = ({ user, setUser, handleUser }) => {
+import { name, password, passwordConfirmation } from '../slices/userSlice'
+
+const UpdateUserForm = () => {
   
+
+  const user = useSelector( state => state.user )
+  const dispatch = useDispatch()
   const history = useHistory()
+
+  const handleName = e => {
+    dispatch(name(e.target.value))
+  }
+
+  const handlePassword = e => {
+    dispatch(password(e.target.value))
+  }
+
+  const handlePasswordConfirmation = e => {
+    dispatch(passwordConfirmation(e.target.value))
+  }
 
   const handleUpdateUser = e => {
     e.preventDefault()
@@ -19,7 +37,7 @@ const UpdateUserForm = ({ user, setUser, handleUser }) => {
       method: "DELETE"
     }).then(fetch('/logout', {
       method: "DELETE"
-    })).then( () => setUser() ).then(history.push('/'))
+    })).then(history.push('/'))
   }
 
   return (
@@ -28,21 +46,21 @@ const UpdateUserForm = ({ user, setUser, handleUser }) => {
       <input type="text"
              name="user_name"
              placeholder={user.user_name}
-             onChange={ e => handleUser(e) }
+             onChange={ e => handleName(e) }
       />
       <br/>
       <label htmlFor="password">New Password</label>
       <input type="text"
              name="password"
              placeholder="Password"
-             onChange={ e => handleUser(e) }
+             onChange={ e => handlePassword(e) }
       />
       <br/>
       <label htmlFor="password_confirmation">Confirm New Password</label>
       <input type="text"
              name="password_confirmation"
              placeholder="Password Confirmation"
-             onChange={ e => handleUser(e) }
+             onChange={ e => handlePasswordConfirmation(e) }
       />
       <br/>
       <input type="submit"

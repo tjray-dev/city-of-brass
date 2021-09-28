@@ -1,23 +1,13 @@
-import { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+
+import { name, origin, currentHP, incrementAttack, decrementAttack, incrementDefense, decrementDefense } from '../slices/characterSlice'
 
 const CharacterCreation = () => {
 
-  const [character, setCharacter] = useState()
-
+  const character = useSelector( state => state.character )
+  const dispatch = useDispatch()
   const history = useHistory()
-
-  const handleCharacterName = e => {
-    setCharacter({...character, 
-      [e.target.name] : e.target.value
-    })
-  }
-
-  const handleOrigin = e => {
-    setCharacter({...character, 
-      [e.target.name] : e.target.value
-    })
-  }
 
   const handleCreateCharacter = e => {
     e.preventDefault()
@@ -27,7 +17,7 @@ const CharacterCreation = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(character)
-    }).then( r => r.json() ).then( data => setCharacter(data) )
+    }).then( r => r.json() )
     history.push('/room')
   }
 
@@ -39,9 +29,12 @@ const CharacterCreation = () => {
           <input type="text"
             name="character_name"
             placeholder="Character Name"
-            onChange={ e => handleCharacterName(e) }
+            onChange={ e => dispatch(name(e.target.value)) }
           />
-          <select name="character_origin" id="origin" onChange={e => handleOrigin(e) }>
+          <select name="character_origin" 
+                  id="origin" 
+                  onChange={ e => dispatch(origin(e.target.value))}
+          >
             <option value="origin1">Origin1</option>
             <option value="origin2">Origin2</option>
             <option value="origin3">Origin3</option>

@@ -5,15 +5,23 @@ const slice = createSlice({
   initialState: {
     user_name: "",
     password: "",
+    password_confirmation: "",
   },
   reducers: {
-    updateName: (state, action) => {
+    name: (state, action) => {
       state.user_name =  action.payload 
-    }
+    },
+    password: (state, action) => {
+      state.password = action.payload
+    },
+    passwordConfirmation: (state, action) => {
+      state.password_confirmation = action.payload
+    },
+    
   }
 })
 
-const { updateName } = slice.actions
+const { name, password, passwordConfirmation } = slice.actions
 
-export { updateName } 
+export { name, password, passwordConfirmation } 
 export default slice.reducer

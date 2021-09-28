@@ -1,10 +1,22 @@
-import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 
-const Login = ({ user, setUser, handleUser }) => {
+import { name, password } from '../slices/userSlice'
+
+
+const Login = () => {
   
-  
+  const user = useSelector(state => state.user)
+  const dispatch = useDispatch()
   const history = useHistory()
+
+  const handleName = e => {
+    dispatch(name(e.target.value))
+  }
+
+  const handlePassword = e => {
+    dispatch(password(e.target.value))
+  }
 
   const handleLogin = (e) => {
     e.preventDefault()
@@ -16,7 +28,7 @@ const Login = ({ user, setUser, handleUser }) => {
       body: JSON.stringify(user),
     }).then( r => {
       if (r.ok) {
-        r.json().then( data => setUser(data)).then(history.push('/account'))
+        r.json().then( data => console.log(data)).then(history.push('/account'))
       }
     })
   }
@@ -26,17 +38,17 @@ const Login = ({ user, setUser, handleUser }) => {
   }
 
   return (
-      <form onSubmit={ e => handleLogin(e) }>
+      <form onSubmit={handleLogin}>
         <input type="text" 
               name="user_name"
               placeholder="User Name"
-              onChange={ e => handleUser(e) }
+              onChange={ e => handleName(e) }
         />
         <br/>
         <input type="text"
               name="password"
               placeholder="Password"
-              onChange={ e => handleUser(e) }
+              onChange={ e => handlePassword(e) }
         />
         <br/>
         <input type="submit"
