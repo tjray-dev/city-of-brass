@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
-import { name, origin, currentHP, incrementAttack, decrementAttack, incrementDefense, decrementDefense } from '../slices/characterSlice'
+import { name, origin } from '../slices/characterSlice'
 
 const CharacterCreation = () => {
 

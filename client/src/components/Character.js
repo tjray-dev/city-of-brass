@@ -1,11 +1,18 @@
+import { useSelector } from 'react-redux'
+
 const Character = () => {
 
+  const character = useSelector( state => state.character)
   return (
     <>
-      <span>Character.character_name</span>
-      <span>HP: Character.current_hp</span>
-      <span>Attack: Character.attack_bonus</span>
-      <span>Defense: Character.defense_bonus</span>
+      <span>{character.character_name}</span>
+      <br />
+      <span>HIT POINTS:{character.current_hp}</span>
+      <br />
+      <span>ATTACK: {character.attack_bonus}</span>
+      <br />
+      <span>DEFENSE: {character.defense_bonus}</span>
+      <br />
     </>
   )
 }
