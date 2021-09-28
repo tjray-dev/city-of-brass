@@ -1,11 +1,13 @@
 const Skills = () => {
 
-  const [skills, setSkills] = useState([])
+  const skills = ["skill", "skill", "skill", "skill"]
   return (
     <div>
       {skills.map(skill => {
-        <li>Skill : level</li>
+        return  <li>{skill}</li>
       })}
     </div>
   )
 }
+
+export default Skills

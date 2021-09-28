@@ -1,60 +1,30 @@
-import { BrowserRouter, Switch, Route, useHistory } from "react-router-dom"
-import { useState, useEffect } from 'react'
+import { BrowserRouter, Switch, Route } from "react-router-dom"
 
 import LandingPage from './components/LandingPage'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import Account from './components/Account'
 import CharacterCreation from './components/CharacterCreation'
+import Room from './components/Room'
 
 function App() {
-
-  const [user, setUser] = useState()
-
-  // const history = useHistory()
-
-  // useEffect(() => {
-  //   fetch("/me").then( r => {
-  //     if (r.ok) {
-  //       r.json().then( user => {
-  //         if (user){
-  //           setUser(user)
-  //           console.log(user)
-  //         }
-  //       })
-  //     }
-  //   });
-  // }, []);
-
-  const handleUser = e => {
-    setUser({...user,
-    [e.target.name]: e.target.value 
-    })
-  }
-  
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/room">
+          <Room />
+        </Route>
         <Route path="/character">
           <CharacterCreation />
         </Route>
         <Route path="/account">
-          <Account user={user} 
-                   setUser={setUser} 
-                   handleUser={handleUser}
-          />
+          <Account />
         </Route>
         <Route path="/signup">
-          <SignUp user={user} 
-                  setUser={setUser} 
-                  handleUser={handleUser}
-          />
+          <SignUp />
         </Route>
         <Route path="/login">
-          <Login user={user} 
-                 setUser={setUser} 
-                 handleUser={handleUser}
-          />
+          <Login />
         </Route>
         <Route path="/">
           <LandingPage />

@@ -1,9 +1,13 @@
 const Items = () => {
+
+  const items = ["item", "item", "item"]
   return (
     <div>
       {items.map(item => {
-        <li>Item : effect </li>
+        return <li>Item : effect </li>
       })}
     </div>
   )
 }
+
+export default Items
