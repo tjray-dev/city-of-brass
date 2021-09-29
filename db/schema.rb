@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_27_153427) do
+ActiveRecord::Schema.define(version: 2021_09_29_033901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "character_skills", force: :cascade do |t|
+    t.bigint "skill_id", null: false
+    t.bigint "character_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["character_id"], name: "index_character_skills_on_character_id"
+    t.index ["skill_id"], name: "index_character_skills_on_skill_id"
+  end
 
   create_table "characters", force: :cascade do |t|
     t.string "character_name"
@@ -26,9 +35,25 @@ ActiveRecord::Schema.define(version: 2021_09_27_153427) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.string "desc"
+    t.integer "item_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.string "room_name"
     t.text "room_desc"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string "name"
+    t.string "desc"
+    t.integer "skill_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -40,4 +65,6 @@ ActiveRecord::Schema.define(version: 2021_09_27_153427) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "character_skills", "characters"
+  add_foreign_key "character_skills", "skills"
 end

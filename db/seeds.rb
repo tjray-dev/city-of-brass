@@ -7,4 +7,6 @@ Character.create!(character_name: "Goblin Gnasher", character_origin: "Goblin", 
 Character.create!(character_name: "Goblin Scrapper", character_origin: "Goblin", character_type: 1)
 Character.create!(character_name: "Goblin Tosser", character_origin: "Goblin", character_type: 1)
 
+Skill.create!(name: "Skill", desc: "A skill...", skill_type: 0)
 
+CharacterSkill.create!(character_id: Character.first.id, skill_id: Skill.first.id)

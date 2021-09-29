@@ -1,4 +1,6 @@
 class Character < ApplicationRecord
+  has_many :character_skills
+  has_many :skills, through: :character_skills
 
   validates :character_name, :character_origin, presence: true
   validates :character_name, length: { in: 2..20 }
