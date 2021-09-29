@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :character_skills
   resources :items, only: [ :index, :show ]
   resources :skills, only: [ :index, :show ]
   resources :rooms, only: [ :show ]
