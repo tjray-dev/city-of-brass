@@ -15,4 +15,10 @@ class CharacterSkillsController < ApplicationController
     character_skill.update!(params[:level])
     render json: character_skill, status: :accepted
   end
+
+  private
+
+  def character_skill_params
+    params.permit(:character_id, :skill_id)
+  end
 end
