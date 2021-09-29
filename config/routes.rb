@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :character_skills
+  resources :character_skills, only: [ :create, :show, :update ]
   resources :items, only: [ :index, :show ]
   resources :skills, only: [ :index, :show ]
   resources :rooms, only: [ :show ]
