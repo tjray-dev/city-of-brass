@@ -5,7 +5,7 @@ class SkillsController < ApplicationController
   end
 
   def show
-    skill = Skill.find_by!(name: params[:name])
+    skill = Skill.find(params[:id])
     render json: skill, status: :ok
   end
 end
