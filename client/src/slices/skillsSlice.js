@@ -24,10 +24,7 @@ const slice = createSlice({
   },
   reducers: {
     addSkills: (state, action) => {
-      state.skills.push(action.payload) 
-    },
-    levelUp: (state, action) => {
-      state.skills.skill_level += 1
+      state.skills.entities.push(action.payload) 
     },
   }
 })

@@ -1,11 +1,12 @@
+import { useSelector } from 'react-redux'
+
 const Items = () => {
 
-  const items = ["item", "item", "item"]
+  const items = useSelector(state => state.items.entities)
+
   return (
     <div>
-      {items.map(item => {
-        return <li>Item : effect </li>
-      })}
+      {items.map( item => <li>{item.item_name}: {item.item_level}</li>)}
     </div>
   )
 }
