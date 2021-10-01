@@ -1,7 +1,7 @@
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { name, password } from '../slices/userSlice'
+import { name, password, setUser } from '../slices/userSlice'
 
 
 const Login = () => {
@@ -28,7 +28,12 @@ const Login = () => {
       body: JSON.stringify(user),
     }).then( r => {
       if (r.ok) {
-        r.json().then( data => console.log(data)).then(history.push('/account'))
+        
+        r.json().then( data => {
+          // console.log(data)
+          dispatch(setUser(data))
+          // console.log(user)
+        }).then(history.push('/account'))
       }
     })
   }

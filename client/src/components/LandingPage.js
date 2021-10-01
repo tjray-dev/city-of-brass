@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 
-const LandingPage = ({ user, setUser}) => {
+import { setUser } from '../slices/userSlice'
+
+const LandingPage = () => {
+  const user = useSelector( state => state.user )
+  const dispatch = useDispatch()
   const history = useHistory()
 
   const handleLogin = () => {
@@ -10,7 +15,7 @@ const LandingPage = ({ user, setUser}) => {
   const handleLogOut = () => {
       fetch("/logout", {
         method: "DELETE",
-      }).then(setUser);
+      }).then( data => dispatch(setUser));
   }
 
   return (

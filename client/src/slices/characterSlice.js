@@ -31,7 +31,6 @@ const slice = createSlice({
     decrementDefense: (state, action) => {
       state.defense_bonus -= action.payload
     },
-
   }
 })
 

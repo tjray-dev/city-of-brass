@@ -1,11 +1,11 @@
+import { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { name, password, passwordConfirmation } from '../slices/userSlice'
+import { name, password, passwordConfirmation, setUser } from '../slices/userSlice'
 
 const UpdateUserForm = () => {
   
-
   const user = useSelector( state => state.user )
   const dispatch = useDispatch()
   const history = useHistory()
@@ -30,7 +30,9 @@ const UpdateUserForm = () => {
         "Content-Type" : "application/json"
       },
       body: JSON.stringify(user)
-    })
+    }).then(r => r.json())
+        .then(data => dispatch(setUser(data)))
+          .then(history.push('/account'))
   }
   const handleDeleteUser = () => {
     fetch(`users/${user.id}`,{
@@ -39,7 +41,7 @@ const UpdateUserForm = () => {
       method: "DELETE"
     })).then(history.push('/'))
   }
-
+  // useEffect(() => {}, [user])
   return (
     <form onSubmit={handleUpdateUser}>
       <label htmlFor="user_name">Edit User Name</label>

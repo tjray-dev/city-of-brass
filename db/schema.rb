@@ -10,14 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_29_033901) do
+ActiveRecord::Schema.define(version: 2021_09_29_042025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "character_items", force: :cascade do |t|
+    t.bigint "character_id", null: false
+    t.bigint "item_id", null: false
+    t.integer "level"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["character_id"], name: "index_character_items_on_character_id"
+    t.index ["item_id"], name: "index_character_items_on_item_id"
+  end
+
   create_table "character_skills", force: :cascade do |t|
     t.bigint "skill_id", null: false
     t.bigint "character_id", null: false
+    t.integer "level", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["character_id"], name: "index_character_skills_on_character_id"
@@ -65,6 +76,8 @@ ActiveRecord::Schema.define(version: 2021_09_29_033901) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "character_items", "characters"
+  add_foreign_key "character_items", "items"
   add_foreign_key "character_skills", "characters"
   add_foreign_key "character_skills", "skills"
 end

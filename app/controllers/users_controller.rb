@@ -1,23 +1,29 @@
 class UsersController < ApplicationController
 
-  before_action :find_user, except: [ :create ]
-
+  wrap_parameters format: []
+  before_action :authorize
+  skip_before_action :authorize, only: [ :create ]
+  
   def create
-    user = User.create(user_params)
-    render json: user, status: :created
+    user = User.create!(user_params)
+    session[:user_id] = user.id
+    render json: {user: user, session_id: session[:user_id] }, status: :created
   end
 
   def show
-    render json: @user, stauts: :ok
+    user = User.find(session[:user_id])
+    render json: user, status: :created
   end
 
   def update
-    @user.update(user_params)
-    render json: @user, status: :accepted
+    user = User.find(session[:user_id])
+    user.update!(user_params)
+    render json: {user: user}, status: :accepted
   end
 
   def destroy
-    @user.destroy
+    user = User.find(session[:user_id])
+    user.destroy
     head :no_content
   end
 
@@ -25,9 +31,5 @@ class UsersController < ApplicationController
 
   def user_params
     params.permit(:user_name, :password, :password_confirmation)
-  end
-
-  def find_user
-    @user = User.find_by!(id: session[:user_id])
   end
 end

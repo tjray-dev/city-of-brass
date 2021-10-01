@@ -11,7 +11,7 @@ const Account = () =>{
   
   const [update, setUpdate] = useState(false)
   const history = useHistory()
-
+// console.log(user)
   return (
     <>
     <h1>Welcome, {`${user.user_name}`}</h1>

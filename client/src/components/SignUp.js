@@ -1,11 +1,25 @@
 import { useHistory } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 
+import { name, password, passwordConfirmation, setUser } from '../slices/userSlice'
 
-const SignUp = ({ user, setUser, handleUser }) => {
+const SignUp = () => {
 
+  const user = useSelector( state => state.user )
+  const dispatch = useDispatch()
   const history = useHistory()
 
+  const handleName = e => {
+    dispatch(name(e.target.value))
+  }
 
+  const handlePassword = e => {
+    dispatch(password(e.target.value))
+  }
+
+  const handlePasswordConfirmation = e => {
+    dispatch(passwordConfirmation(e.target.value))
+  }
 
   const handleSignUp = e =>{
     e.preventDefault()
@@ -16,7 +30,7 @@ const SignUp = ({ user, setUser, handleUser }) => {
       },
       body: JSON.stringify(user),
     }).then( r => r.json() )
-        .then( data => setUser(data) )
+        .then( data => dispatch(setUser(data)) )
           .then( history.push('/account') )
   }
 
@@ -25,19 +39,19 @@ const SignUp = ({ user, setUser, handleUser }) => {
       <input type="text"
              name="user_name"
              placeholder="User Name"
-             onChange={ e =>handleUser(e) }
+             onChange={ e => handleName(e) }
       />
       <br/>
       <input type="text"
              name="password"
              placeholder="Password"
-             onChange={ e =>handleUser(e) }
+             onChange={ e =>handlePassword(e) }
       />
       <br/>
       <input type="text"
              name="password_confirmation"
              placeholder="Password Confirmation"
-             OnChange={ e => handleUser(e) }
+             onChange={ e => handlePasswordConfirmation(e) }
       />
       <br/>
       <input type="submit"

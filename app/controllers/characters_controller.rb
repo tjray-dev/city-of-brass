@@ -1,6 +1,7 @@
 class CharactersController < ApplicationController
 
   before_action :find_character, except: [ :create ]
+  before_action :authorize
 
   def create
     character = Character.create(character_params)

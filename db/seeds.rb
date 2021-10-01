@@ -9,4 +9,6 @@ Character.create!(character_name: "Goblin Tosser", character_origin: "Goblin", c
 
 Skill.create!(name: "Skill", desc: "A skill...", skill_type: 0)
 
+Item.create!(name: "Sword", desc: "A Sword...", item_type: 0)
+
 CharacterSkill.create!(character_id: Character.first.id, skill_id: Skill.first.id)

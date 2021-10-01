@@ -7,7 +7,13 @@ import Account from './components/Account'
 import CharacterCreation from './components/CharacterCreation'
 import Room from './components/Room'
 
+import { useGetItemQuery } from './slices/apiSlice'
+
 function App() {
+
+  // const { data, error, isloading } = useGetItemQuery(1)
+
+  // console.log(data)
   return (
     <BrowserRouter>
       <Switch>
