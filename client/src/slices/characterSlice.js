@@ -32,11 +32,11 @@ const slice = createSlice({
       state.defense_bonus -= action.payload
     },
     setCharacter: (state, action) => {
-      state.character_name = action.payload.character.character_name
-      state.character_origin = action.payload.character.character_origin
-      state.current_hp = action.payload.character.character_hp
-      state.attack_bonus = action.payload.character.attack_bonus
-      state.defense_bonus = action.payload.character.defense_bonus
+      state.character_name = action.payload.character_name
+      state.character_origin = action.payload.character_origin
+      state.current_hp = action.payload.character_hp
+      state.attack_bonus = action.payload.attack_bonus
+      state.defense_bonus = action.payload.defense_bonus
     }
   }
 })

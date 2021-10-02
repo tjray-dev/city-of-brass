@@ -8,6 +8,7 @@ const slice = createSlice({
     password: "",
     password_confirmation: "",
     session_id: "",
+    character_id: ""
   },
   reducers: {
     name: (state, action) => {
@@ -25,6 +26,7 @@ const slice = createSlice({
       state.session_id = action.payload.session_id
       state.password = ''
       state.password_confirmation = ''
+      state.character_id = action.payload.user.character_id
 
     }
     
