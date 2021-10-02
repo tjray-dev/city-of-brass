@@ -20,14 +20,12 @@ const slice = createSlice({
       state.password_confirmation = action.payload
     },
     setUser: (state, action) => {
-      console.log(action.payload)
       state.id = action.payload.user.id
       state.user_name = action.payload.user.user_name
       state.session_id = action.payload.session_id
       state.password = ''
       state.password_confirmation = ''
-      // console.log("WHAT IS MY STATE AFTER LOGIN POST")
-      // console.log(state)
+
     }
     
   }

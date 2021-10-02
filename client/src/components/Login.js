@@ -28,11 +28,8 @@ const Login = () => {
       body: JSON.stringify(user),
     }).then( r => {
       if (r.ok) {
-        
         r.json().then( data => {
-          // console.log(data)
           dispatch(setUser(data))
-          // console.log(user)
         }).then(history.push('/account'))
       }
     })

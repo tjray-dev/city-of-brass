@@ -1,4 +1,6 @@
-import { BrowserRouter, Switch, Route } from "react-router-dom"
+import { BrowserRouter, Switch, Route, useHistory } from "react-router-dom"
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import LandingPage from './components/LandingPage'
 import Login from './components/Login'
@@ -7,13 +9,8 @@ import Account from './components/Account'
 import CharacterCreation from './components/CharacterCreation'
 import Room from './components/Room'
 
-import { useGetItemQuery } from './slices/apiSlice'
-
 function App() {
 
-  // const { data, error, isloading } = useGetItemQuery(1)
-
-  // console.log(data)
   return (
     <BrowserRouter>
       <Switch>
