@@ -29,6 +29,8 @@ const slice = createSlice({
   }
 })
 
+// insert thunk here
+
 const { addSkills, levelUp } = slice.actions
 
 export { addSkills, levelUp } 

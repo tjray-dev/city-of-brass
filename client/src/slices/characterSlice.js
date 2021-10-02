@@ -31,10 +31,33 @@ const slice = createSlice({
     decrementDefense: (state, action) => {
       state.defense_bonus -= action.payload
     },
+    setCharacter: (state, action) => {
+      state.character_name = action.payload.character.character_name
+      state.character_origin = action.payload.character.character_origin
+      state.current_hp = action.payload.character.character_hp
+      state.attack_bonus = action.payload.character.attack_bonus
+      state.defense_bonus = action.payload.character.defense_bonus
+    }
   }
 })
 
-const { name, origin, currentHP, incrementAttack, decrementAttack, incrementDefense, decrementDefense } = slice.actions
+const { name, 
+        origin, 
+        currentHP, 
+        incrementAttack, 
+        decrementAttack, 
+        incrementDefense, 
+        decrementDefense,
+        setCharacter
+      } = slice.actions
 
-export  { name, origin, currentHP, incrementAttack, decrementAttack, incrementDefense, decrementDefense } 
+export  { name, 
+          origin, 
+          currentHP, 
+          incrementAttack, 
+          decrementAttack, 
+          incrementDefense, 
+          decrementDefense,
+          setCharacter 
+        } 
 export default slice.reducer

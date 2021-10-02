@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
-import { name, origin } from '../slices/characterSlice'
+import { name, origin, setCharacter } from '../slices/characterSlice'
 
 const CharacterCreation = () => {
 
@@ -18,10 +18,10 @@ const CharacterCreation = () => {
       },
       body: JSON.stringify(character)
     }).then( r => r.json() )
-    history.push('/room')
+        .then( data => dispatch(setCharacter(data)))
+          .then(history.push('/room'))
   }
 
-  console.log(character)
   return (
     <>
       <div>

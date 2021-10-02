@@ -5,7 +5,7 @@ class CharactersController < ApplicationController
 
   def create
     character = Character.create(character_params)
-    render json: character, status: :created
+    render json: { character: character }, status: :created
   end
 
   def show

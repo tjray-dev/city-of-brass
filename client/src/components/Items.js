@@ -1,13 +1,18 @@
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { useGetItemQuery } from '../slices/apiSlice'
+import { useEffect } from 'react'
+import { addItem } from '../slices/itemsSlice'
 
 const Items = () => {
 
-  const items = useSelector(state => state.items.entities)
+  const dispatch = useDispatch()
 
+  const { data, error, isLoading, isFetching } = useGetItemQuery(1)
+  
   return (
-    <div>
-      {items.map( item => <li>{item.item_name}: {item.item_level}</li>)}
-    </div>
+    <>
+     {data ?  data.map( item => <li>{item.name}: {item.item_level}</li>) : null}
+    </>
   )
 }
 

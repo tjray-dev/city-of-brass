@@ -7,6 +7,8 @@ const Character = () => {
     <>
       <span>{character.character_name}</span>
       <br />
+      <span>{character.character_origin}</span>
+      <br />
       <span>HIT POINTS:{character.current_hp}</span>
       <br />
       <span>ATTACK: {character.attack_bonus}</span>
