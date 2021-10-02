@@ -1,4 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+
+export const login = createAsyncThunk(
+  'users/loginStatus',
+  async (user, thunkAPI) => {
+    const response = await fetch('/login', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(user),
+    })
+    const data = await response.json()
+    return data
+  }
+)
 
 const slice = createSlice({
   name: 'user',
@@ -27,9 +42,17 @@ const slice = createSlice({
       state.password = ''
       state.password_confirmation = ''
       state.character_id = action.payload.user.character_id
-
     }
-    
+  },
+  extraReducers: {
+    [login.fulfilled]: (state, { payload }) => {
+      state.id = payload.user.id
+      state.user_name = payload.user.user_name
+      state.session_id = payload.session_id
+      state.password = ''
+      state.password_confirmation = ''
+      state.character_id = payload.user.character_id
+    }
   }
 })
 

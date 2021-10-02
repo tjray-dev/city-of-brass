@@ -1,7 +1,7 @@
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { name, password, setUser } from '../slices/userSlice'
+import { name, password, login } from '../slices/userSlice'
 
 
 const Login = () => {
@@ -20,19 +20,8 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault()
-    fetch('/login', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(user),
-    }).then( r => {
-      if (r.ok) {
-        r.json().then( data => {
-          dispatch(setUser(data))
-        }).then(history.push('/account'))
-      }
-    })
+    dispatch(login(user))
+    history.push('/account')
   }
 
   const handleClick = () => {

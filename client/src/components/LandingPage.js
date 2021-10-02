@@ -1,8 +1,7 @@
-import { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { setUser } from '../slices/userSlice'
+import { setUser, } from '../slices/userSlice'
 
 const LandingPage = () => {
 
@@ -22,10 +21,6 @@ const LandingPage = () => {
       history.push('/login')
     }
   }
-
-  useEffect(() => {
-
-  })
 
   return (
     <div>
