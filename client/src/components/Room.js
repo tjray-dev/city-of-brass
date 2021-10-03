@@ -8,7 +8,6 @@ import Monster from './Monster'
 const Room = () => {
 
   const room = useSelector( state => state.room )
-  console.log(room)
   return (
     <>
       <Skills />
