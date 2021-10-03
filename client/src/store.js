@@ -18,11 +18,7 @@ const store = configureStore({
     skills: skillsReducer,
     items: itemsReducer,
     monster: monsterReducer,
-    [apiSlice.reducerPath]: apiSlice.reducer,
   },
-  middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat(apiSlice.middleware)
-  }
 })
 
 export default store

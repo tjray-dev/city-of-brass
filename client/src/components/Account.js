@@ -20,14 +20,14 @@ const Account = () =>{
         .then( character => dispatch(setCharacter(character)) ).then(() => history.push('/room') )
   } 
   useEffect(() => {
-    fetch('/me').then( r => {
-      if(r.ok){
-        r.json()
-          .then( user => dispatch(setUser(user)) )
-      }
+      fetch('/me').then( r => {
+        if(r.ok){
+          r.json()
+            .then( user => dispatch(setUser(user)) )
+        }
+      })
     })
-  })
-
+  console.log(user)
   return (
     <>
     <h1>Welcome, {`${user.user_name}`}</h1>

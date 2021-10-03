@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 export const login = createAsyncThunk(
   'users/loginStatus',
@@ -23,7 +23,8 @@ const slice = createSlice({
     password: "",
     password_confirmation: "",
     session_id: "",
-    character_id: ""
+    character_id: "",
+    loggedOut: true
   },
   reducers: {
     name: (state, action) => {
@@ -46,13 +47,14 @@ const slice = createSlice({
   },
   extraReducers: {
     [login.fulfilled]: (state, { payload }) => {
-      state.id = payload.user.id
-      state.user_name = payload.user.user_name
+      state.id = payload.id
+      state.user_name = payload.user_name
       state.session_id = payload.session_id
       state.password = ''
       state.password_confirmation = ''
-      state.character_id = payload.user.character_id
-    }
+      state.character_id = payload.character_id
+      state.loggedOut = false
+    },
   }
 })
 

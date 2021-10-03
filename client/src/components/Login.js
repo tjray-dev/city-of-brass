@@ -22,6 +22,7 @@ const Login = () => {
     e.preventDefault()
     dispatch(login(user))
     history.push('/account')
+
   }
 
   const handleClick = () => {
