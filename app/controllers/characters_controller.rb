@@ -1,8 +1,8 @@
 class CharactersController < ApplicationController
 
   before_action :find_character, except: [ :create ]
-  before_action :find_opponent, onlt: [ :update ]
-  # before_action :authorize
+  before_action :find_opponent, only: [ :update ]
+  before_action :authorize
 
   def create
     character = Character.create(character_params)
@@ -37,6 +37,6 @@ class CharactersController < ApplicationController
   end
 
   def find_opponent
-    @opponent = Character.find_by!(character_name: params[:monster_name])
+    @opponent = Character.find(params[:monster_id])
   end
 end

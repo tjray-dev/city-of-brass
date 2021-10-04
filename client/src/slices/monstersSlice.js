@@ -19,8 +19,6 @@ const slice = createSlice({
   },
   reducers: {
     setMonster: (state, { payload } ) => { 
-      // console.log("THIS IS THE MONSTER PAYLOAD")
-      // console.log(payload)
       state.character_name = payload.character_name
       state.character_origin = payload.character_origin
       state.current_hp = payload.character_hp

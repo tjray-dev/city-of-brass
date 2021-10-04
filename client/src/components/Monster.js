@@ -8,7 +8,6 @@ const Monster = () => {
   const dispatch = useDispatch()
 
   useEffect( () => { 
-    dispatch(fetchMonster(2)).unwrap().then( data => dispatch(setMonster(data)))
   }, [monster])
   return (
     <>

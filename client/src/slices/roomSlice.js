@@ -3,18 +3,20 @@ import { createSlice } from '@reduxjs/toolkit';
 const slice = createSlice({
   name: 'room',
   initialState: {
-    room_name: "",
-    room_desc: "",
-    monsters: 5
+    character_id: null,
+    monster_id: null,
   },
   reducers: {
-    decrementMonsters: state => {
-      state.monster -= 1
+    populateCharacter: ( state, { payload }) => {
+      state.character_id = payload
+    },
+    populateMonster: ( state, { payload }) => {
+      state.monster_id = payload
     }
   }
 })
 
-const { decrementMonsters } = slice.actions
+const { populateCharacter, populateMonster } = slice.actions
 
-export { decrementMonsters } 
+export { populateCharacter, populateMonster } 
 export default slice.reducer
