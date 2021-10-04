@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { setUser } from '../slices/userSlice'
 import { fetchCharacter, setCharacter } from '../slices/characterSlice'
+import { addSkills } from '../slices/skillsSlice'
+import { addItems } from '../slices/itemsSlice'
 
 import Logout from './Logout'
 
@@ -11,11 +13,19 @@ const Account = () =>{
 
   const user = useSelector( state => state.user )
   const character = useSelector( state => state.character )
+  const skills = useSelector( state => state.skills.skills)
   const dispatch = useDispatch()
   const history = useHistory()
 
   const handleRoom = () => {
-    dispatch(fetchCharacter(user.character_id)).unwrap().then( data => dispatch(setCharacter(data)) ).then(history.push('/room'))
+    dispatch(fetchCharacter(user.character_id))
+      .unwrap()
+        .then( data => {
+          dispatch(setCharacter(data))
+          dispatch(addSkills(data.skills))
+          dispatch(addItems(data.items))
+        })
+          .then(() => history.push('/room'))
   } 
   useEffect(() => {
     fetch('/me').then( r => {

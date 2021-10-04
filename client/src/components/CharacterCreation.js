@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 
 import { name, origin, setCharacter } from '../slices/characterSlice'
 
+// dispatch character id to the user.character_id then thunk update the user
 const CharacterCreation = () => {
 
   const character = useSelector( state => state.character )

@@ -19,26 +19,11 @@ const slice = createSlice({
     defense_bonus: 0,
   },
   reducers: {
-    name: (state, { payload } ) => {
-      state.character_name =  payload 
+    name: ( state, { payload } ) => {
+      state.character_name = payload.character_name
     },
-    origin: (state, { payload } ) => {
-      state.character_origin = payload
-    },
-    currentHP: (state, { payload } ) => {
-      state.current_hp = payload
-    },
-    incrementAttack: (state, { payload } ) => {
-      state.attack_bonus += payload
-    },
-    decrementAttack: (state, { payload } ) => {
-      state.attack_bonus -= payload
-    },
-    incrementDefense: (state, { payload } ) => {
-      state.defense_bonus += payload
-    },
-    decrementDefense: (state, { payload } ) => {
-      state.defense_bonus -= payload
+    origin: ( state, { payload } ) => {
+      state.character_origin = payload.character_origin
     },
     setCharacter: (state, { payload } ) => {
       state.character_name = payload.character_name
@@ -53,23 +38,7 @@ const slice = createSlice({
     }
 })
 
-const { name, 
-        origin, 
-        currentHP, 
-        incrementAttack, 
-        decrementAttack, 
-        incrementDefense, 
-        decrementDefense,
-        setCharacter
-      } = slice.actions
+const { name, origin, setCharacter } = slice.actions
 
-export  { name, 
-          origin, 
-          currentHP, 
-          incrementAttack, 
-          decrementAttack, 
-          incrementDefense, 
-          decrementDefense,
-          setCharacter 
-        } 
+export  { name, origin, setCharacter } 
 export default slice.reducer

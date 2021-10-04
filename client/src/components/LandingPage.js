@@ -19,7 +19,6 @@ const LandingPage = () => {
         }
       })
   })
-  console.log(user)
   return (
     <div>
       <h1>THE CITY OF BRASS</h1>

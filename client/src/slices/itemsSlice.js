@@ -6,13 +6,13 @@ const slice = createSlice({
     entities: [],
   },
   reducers: {
-    addItem: (state, action) => {
-      state.entities.push(action.payload) 
+    addItems: (state, { payload }) => {
+      state.entities = payload
     },
   }
 })
 
-const { addItem } = slice.actions
+const { addItems } = slice.actions
 
-export { addItem } 
+export { addItems } 
 export default slice.reducer

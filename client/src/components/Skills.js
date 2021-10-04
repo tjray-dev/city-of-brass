@@ -1,12 +1,13 @@
+import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
 const Skills = () => {
 
-  const skills = useSelector(state => state.skills.entities)
-  console.log(skills)
+  const skills = useSelector(state => state.skills)
+
   return (
     <div>
-      {skills.map( skill => <li>{skill.skill_name} : {skill.skill_level}</li>)}
+      {skills.entities.map( skill => <li>{skill.name} : {skill.skill_level}</li>)}
     </div>
   )
 }

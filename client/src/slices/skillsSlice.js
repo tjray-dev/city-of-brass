@@ -3,35 +3,16 @@ import { createSlice } from '@reduxjs/toolkit';
 const slice = createSlice({
   name: 'skills',
   initialState: {
-    entities: [
-      {
-        skill_name: "skill",
-        skill_level: 2
-      },
-      {
-        skill_name: "skill",
-        skill_level: 4
-      },
-      {
-        skill_name: "skill",
-        skill_level: 1
-      },
-      {
-        skill_name: "skill",
-        skill_level: 7
-      },
-    ],
+    entities: []
   },
   reducers: {
-    addSkills: (state, action) => {
-      state.skills.entities.push(action.payload) 
-    },
+    addSkills: ( state, { payload }) => {
+      state.entities = payload
+    }
   }
 })
 
-// insert thunk here
+const { addSkills } = slice.actions
 
-const { addSkills, levelUp } = slice.actions
-
-export { addSkills, levelUp } 
+export { addSkills } 
 export default slice.reducer
