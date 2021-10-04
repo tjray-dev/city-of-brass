@@ -19,7 +19,8 @@ const Logout = () => {
   const handleLogOut = () => {
     fetch("/logout", {
       method: "DELETE",
-    }).then( data => dispatch(setUser(logout))).then(history.push('/'))
+    }).then( data => dispatch(setUser(logout)))
+        .then( () => history.push('/') )
 }
 
   return (

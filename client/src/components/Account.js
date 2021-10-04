@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { setUser } from '../slices/userSlice'
-import { setCharacter } from '../slices/characterSlice'
+import { fetchCharacter, setCharacter } from '../slices/characterSlice'
 
 import Logout from './Logout'
 
@@ -15,19 +15,16 @@ const Account = () =>{
   const history = useHistory()
 
   const handleRoom = () => {
-    fetch(`/characters/${user.character_id}`)
-      .then( r => r.json() )
-        .then( character => dispatch(setCharacter(character)) ).then(() => history.push('/room') )
+    dispatch(fetchCharacter(user.character_id)).unwrap().then( data => dispatch(setCharacter(data)) ).then(history.push('/room'))
   } 
   useEffect(() => {
-      fetch('/me').then( r => {
-        if(r.ok){
-          r.json()
-            .then( user => dispatch(setUser(user)) )
-        }
-      })
+    fetch('/me').then( r => {
+      if(r.ok){
+        r.json()
+          .then( user => dispatch(setUser(user)) )
+      }
     })
-  console.log(user)
+  },[user])
   return (
     <>
     <h1>Welcome, {`${user.user_name}`}</h1>

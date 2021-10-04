@@ -1,8 +1,15 @@
-import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
+import { fetchMonster, setMonster } from '../slices/monstersSlice'
 const Monster = () => {
 
   const monster = useSelector(state => state.monster)
+  const dispatch = useDispatch()
+
+  useEffect( () => { 
+    dispatch(fetchMonster(2)).unwrap().then( data => dispatch(setMonster(data)))
+  }, [monster])
   return (
     <>
       <span>{monster.character_name}</span>

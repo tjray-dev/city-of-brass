@@ -1,7 +1,7 @@
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { name, password, login } from '../slices/userSlice'
+import { name, password, login, setUser} from '../slices/userSlice'
 
 
 const Login = () => {
@@ -18,10 +18,12 @@ const Login = () => {
     dispatch(password(e.target.value))
   }
 
-  const handleLogin = (e) => {
+  const handleLogin = e => {
     e.preventDefault()
     dispatch(login(user))
-    history.push('/account')
+      .unwrap()
+        .then( data => dispatch(setUser(data)) )
+          .then(() => history.push('/account'))
 
   }
 

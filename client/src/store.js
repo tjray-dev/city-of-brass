@@ -7,8 +7,6 @@ import skillsReducer from './slices/skillsSlice'
 import itemsReducer from './slices/itemsSlice'
 import monsterReducer from './slices/monstersSlice'
 
-import { apiSlice } from './slices/apiSlice'
-
 const store = configureStore({
   reducer: {
     // state : slice.reducer

@@ -30,7 +30,7 @@ const SignUp = () => {
       },
       body: JSON.stringify(user),
     }).then( r => r.json() )
-        .then( data => dispatch(setUser(data)) )
+        .then( data => dispatch((data)) )
           .then( history.push('/account') )
   }
 

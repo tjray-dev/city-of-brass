@@ -9,7 +9,7 @@ class CharactersController < ApplicationController
   end
 
   def show
-    render json:  @character, status: :ok
+    render json: @character, status: :ok
   end
 
   def update

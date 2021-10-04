@@ -1,4 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+
+export const fetchCharacter = createAsyncThunk(
+  'characters/characterStatus',
+  async (character_id, thunkApi) => {
+    const response = await fetch(`/characters/${character_id}`)
+    const data = await response.json()
+    return data
+  }
+)
 
 const slice = createSlice({
   name: 'character',
@@ -10,35 +19,38 @@ const slice = createSlice({
     defense_bonus: 0,
   },
   reducers: {
-    name: (state, action) => {
-      state.character_name =  action.payload 
+    name: (state, { payload } ) => {
+      state.character_name =  payload 
     },
-    origin: (state, action) => {
-      state.character_origin = action.payload
+    origin: (state, { payload } ) => {
+      state.character_origin = payload
     },
-    currentHP: (state, action) => {
-      state.current_hp = action.payload
+    currentHP: (state, { payload } ) => {
+      state.current_hp = payload
     },
-    incrementAttack: (state, action) => {
-      state.attack_bonus += action.payload
+    incrementAttack: (state, { payload } ) => {
+      state.attack_bonus += payload
     },
-    decrementAttack: (state, action) => {
-      state.attack_bonus -= action.payload
+    decrementAttack: (state, { payload } ) => {
+      state.attack_bonus -= payload
     },
-    incrementDefense: (state, action) => {
-      state.defense_bonus += action.payload
+    incrementDefense: (state, { payload } ) => {
+      state.defense_bonus += payload
     },
-    decrementDefense: (state, action) => {
-      state.defense_bonus -= action.payload
+    decrementDefense: (state, { payload } ) => {
+      state.defense_bonus -= payload
     },
-    setCharacter: (state, action) => {
-      state.character_name = action.payload.character_name
-      state.character_origin = action.payload.character_origin
-      state.current_hp = action.payload.character_hp
-      state.attack_bonus = action.payload.attack_bonus
-      state.defense_bonus = action.payload.defense_bonus
+    setCharacter: (state, { payload } ) => {
+      state.character_name = payload.character_name
+      state.character_origin = payload.character_origin
+      state.current_hp = payload.character_hp
+      state.attack_bonus = payload.attack_bonus
+      state.defense_bonus = payload.defense_bonus
     }
-  }
+  },
+    extraReducers: {
+      [fetchCharacter.fulfilled]: (state, { payload } ) => {},
+    }
 })
 
 const { name, 

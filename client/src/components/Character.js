@@ -1,8 +1,10 @@
 import { useSelector } from 'react-redux'
 
+
 const Character = () => {
 
   const character = useSelector( state => state.character)
+
   return (
     <>
       <span>{character.character_name}</span>

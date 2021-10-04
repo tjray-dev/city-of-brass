@@ -24,37 +24,28 @@ const slice = createSlice({
     password_confirmation: "",
     session_id: "",
     character_id: "",
-    loggedOut: true
   },
   reducers: {
-    name: (state, action) => {
-      state.user_name =  action.payload 
+    name: (state, { payload }) => {
+      state.user_name =  payload 
     },
-    password: (state, action) => {
-      state.password = action.payload
+  password: (state, { payload }) => {
+      state.password = payload
     },
-    passwordConfirmation: (state, action) => {
-      state.password_confirmation = action.payload
+    passwordConfirmation: (state, { payload }) => {
+      state.password_confirmation = payload
     },
-    setUser: (state, action) => {
-      state.id = action.payload.user.id
-      state.user_name = action.payload.user.user_name
-      state.session_id = action.payload.session_id
+    setUser: (state, { payload }) => {
       state.password = ''
       state.password_confirmation = ''
-      state.character_id = action.payload.user.character_id
+      state.id = payload.user.id
+      state.user_name = payload.user.user_name
+      state.session_id = payload.session_id
+      state.character_id = payload.user.character_id
     }
   },
   extraReducers: {
-    [login.fulfilled]: (state, { payload }) => {
-      state.id = payload.id
-      state.user_name = payload.user_name
-      state.session_id = payload.session_id
-      state.password = ''
-      state.password_confirmation = ''
-      state.character_id = payload.character_id
-      state.loggedOut = false
-    },
+    [login.fulfilled]: (state, { payload }) => {},
   }
 })
 
