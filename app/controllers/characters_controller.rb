@@ -1,7 +1,8 @@
 class CharactersController < ApplicationController
 
   before_action :find_character, except: [ :create ]
-  before_action :authorize
+  before_action :find_opponent, onlt: [ :update ]
+  # before_action :authorize
 
   def create
     character = Character.create(character_params)
@@ -13,8 +14,11 @@ class CharactersController < ApplicationController
   end
 
   def update
-    @character.update
-    render json: @character, status: :accepted
+    # use a case statement to evaluate the action param
+    # then call the appropriate character class method based
+    # passing in any needed arguments
+    @character.attack(@opponent)
+    render json: @opponent, status: :accepted
   end
 
   def destroy
@@ -30,5 +34,9 @@ class CharactersController < ApplicationController
 
   def find_character
     @character = Character.find(params[:id])
+  end
+
+  def find_opponent
+    @opponent = Character.find_by!(character_name: params[:monster_name])
   end
 end
