@@ -14,9 +14,6 @@ import { addItems } from '../slices/itemsSlice'
 
 
 const Room = () => {
-
-// room component will handle the fetching of character and monster
-
   
   const dispatch = useDispatch()
   const user = useSelector( state => state.user)
@@ -40,21 +37,8 @@ const Room = () => {
     }
   }, [room])
 
-//  const handleFight = () => {
-//    fetch(`/characters/${room.character_id}`, {
-//      method: "PATCH",
-//      headers: {
-//        "Content-Type": "application/json"
-//      },
-//      body: JSON.stringify(room)
-//    }).then(r => r.json()).then( data => {
-//      dispatch(setMonster(data))
-//    } )
-//  }
   return (
     <>
-      {/* <Skills />
-      <Items /> */}
       <Character />
       <Monster />
     </>
