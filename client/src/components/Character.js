@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 
 import { setMonster } from '../slices/monstersSlice'
 
-
+import Skills from './Skills'
 
 
 const Character = () => {
@@ -28,7 +28,7 @@ const Character = () => {
   return (
     <>
       <div className="name-plate" style={{ 'border-bottom': 'solid 3px', 'width': '45%' }}>
-        <h3 style={{ 'display': 'inline-block', 'margin-top': '1em', 'margin-left': '1em', 'margin-right': '5px' }}>
+        <h3 style={{ 'display': 'inline-block', 'margin-top': '1em', 'margin-left': '1em', 'margin-right': '5px'}}>
           {character.character_name}:
         </h3>
         <span>
@@ -53,6 +53,7 @@ const Character = () => {
             {character.defense_bonus}
           </span>
         </div>
+        <Skills />
       </div>
     </>
   )
