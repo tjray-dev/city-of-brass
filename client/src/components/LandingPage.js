@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { setUser, } from '../slices/userSlice'
+import { setUser } from '../slices/userSlice'
 
 const LandingPage = () => {
 
@@ -18,9 +18,12 @@ const LandingPage = () => {
               .then(() => history.push('/account'))
         }
       })
+      // dispatch(me()).unwrap()
+      //   .then(data => dispatch(setUser(data)))
+      //   .then(() => history.push('/account'))
   })
   return (
-    <div>
+    <div style={{'margin-top': '100px', 'margin-left': '300px',}}>
       <h1>THE CITY OF BRASS</h1>
       <p>
         Welcome to The City of Brass!

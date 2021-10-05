@@ -15,6 +15,17 @@ export const login = createAsyncThunk(
   }
 )
 
+// export const me = createAsyncThunk(
+//   'users/meStatus',
+//   async (user, thunkAPI) => {
+//     const response = await fetch('/me')
+//     if (response.ok){
+//       const data = await response.json()
+//       return data
+//     }
+//   }
+// )
+
 const slice = createSlice({
   name: 'user',
   initialState: { 
@@ -46,6 +57,7 @@ const slice = createSlice({
   },
   extraReducers: {
     [login.fulfilled]: (state, { payload }) => {},
+    // [me.fulfilled]: (state, { payload }) => {},
   }
 })
 

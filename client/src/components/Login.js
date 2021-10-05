@@ -32,7 +32,7 @@ const Login = () => {
   }
 
   return (
-      <form onSubmit={handleLogin}>
+      <form style= {{ 'margin-top': '100px', 'margin-left': "300px"}}onSubmit={handleLogin}>
         <input type="text" 
               name="user_name"
               placeholder="User Name"

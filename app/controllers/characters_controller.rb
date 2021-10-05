@@ -17,6 +17,7 @@ class CharactersController < ApplicationController
     # use a case statement to evaluate the action param
     # then call the appropriate character class method based
     # passing in any needed arguments
+
     @character.attack(@opponent)
     render json: @opponent, status: :accepted
   end
@@ -37,6 +38,6 @@ class CharactersController < ApplicationController
   end
 
   def find_opponent
-    @opponent = Character.find(params[:monster_id])
+    @opponent = Character.find(params[:opponent_id])
   end
 end
