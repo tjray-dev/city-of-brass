@@ -8,6 +8,20 @@ export const fetchMonster = createAsyncThunk(
     return data
   }
 )
+export const monsterAttack = createAsyncThunk(
+  'attack/attackStatus',
+  async (character_id, opponent_id, thunkApi) => {
+    const response = await fetch(`/characters/${character_id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ opponent_id })
+    })
+    const data = await response.json()
+    return data 
+  }
+)
 const slice = createSlice({
   name: 'monster',
   initialState: {
@@ -19,8 +33,6 @@ const slice = createSlice({
   },
   reducers: {
     setMonster: (state, { payload } ) => { 
-      console.log("THIS IS THE MONSTER PAYLOAD")
-      console.log(payload)
       state.character_name = payload.character_name
       state.character_origin = payload.character_origin
       state.current_hp = payload.character_hp

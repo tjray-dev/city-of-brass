@@ -11,6 +11,8 @@ const slice = createSlice({
       state.character_id = payload
     },
     populateMonster: ( state, { payload }) => {
+      console.log("THIS IS THE MONSTER ID")
+      console.log(payload)
       state.monster_id = payload
     }
   }
