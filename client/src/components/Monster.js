@@ -9,31 +9,18 @@ const Monster = () => {
   const monster = useSelector(state => state.monster)
   const dispatch = useDispatch()
 
-  // const attack =  async () => {
-  //     const response = await fetch(`/characters/${room.monster_id}`, {
-  //       method: "PATCH",
-  //       headers: {
-  //         "Content-Type": "application/json"
-  //       },
-  //       body: JSON.stringify({ opponent_id: room.character_id})
-  //     })
-  //     const data = await response.json()
-  //     console.log(data)
-  //     // dispatch(setCharacter(data))
-  // }
-
   useEffect(() => { 
-    // setTimeout( () => {
-    //   fetch(`/characters/${room.monster_id}`, {
-    //     method: "PATCH",
-    //     headers: {
-    //       "Content-Type": "application/json"
-    //     },
-    //     body: JSON.stringify({ opponent_id: room.character_id})
-    //   }).then(r => r.json()).then( data => {
-    //     dispatch(setCharacter(data))
-    //   } )
-    // }, 3000)
+    setTimeout( () => {
+      fetch(`/characters/${room.monster_id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ opponent_id: room.character_id})
+      }).then(r => r.json()).then( data => {
+        dispatch(setCharacter(data))
+      } )
+    }, 3000)
   }, [room, monster])
   return (
     <div styles={'display: inline-block'}>

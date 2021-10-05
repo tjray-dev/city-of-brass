@@ -24,37 +24,39 @@ const Room = () => {
   const monster = useSelector( state => state.monster)
 
   useEffect( () => {
-    dispatch(fetchCharacter(user.character_id)).unwrap()
+    if (room.character_id === null  && room.monster_id === null){
+      dispatch(fetchCharacter(user.character_id)).unwrap()
       .then( data => {
         dispatch(setCharacter(data))
         dispatch(addSkills(data.skills))
         dispatch(addItems(data.items))
         dispatch(populateCharacter(data.id))
       })
-      dispatch(fetchMonster(2)).unwrap()
+      dispatch(fetchMonster()).unwrap()
         .then( data => {
           dispatch(setMonster(data))
           dispatch(populateMonster(data.id))
         })
+    }
   }, [room])
 
- const handleFight = () => {
-   fetch(`/characters/${room.character_id}`, {
-     method: "PATCH",
-     headers: {
-       "Content-Type": "application/json"
-     },
-     body: JSON.stringify(room)
-   }).then(r => r.json()).then( data => {
-     dispatch(setMonster(data))
-   } )
- }
+//  const handleFight = () => {
+//    fetch(`/characters/${room.character_id}`, {
+//      method: "PATCH",
+//      headers: {
+//        "Content-Type": "application/json"
+//      },
+//      body: JSON.stringify(room)
+//    }).then(r => r.json()).then( data => {
+//      dispatch(setMonster(data))
+//    } )
+//  }
   return (
     <>
       {/* <Skills />
       <Items /> */}
       <Character />
-      {/* <Monster /> */}
+      <Monster />
     </>
   )
 }

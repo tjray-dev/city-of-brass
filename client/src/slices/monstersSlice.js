@@ -2,8 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchMonster = createAsyncThunk(
   'monsters/monsterStatus',
-  async (character_id, thunkApi) => {
-    const response = await fetch(`/characters/${character_id}`)
+  async thunkApi => {
+    const response = await fetch(`/monster`)
     const data = await response.json()
     return data
   }

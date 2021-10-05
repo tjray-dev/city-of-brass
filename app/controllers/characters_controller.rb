@@ -1,6 +1,6 @@
 class CharactersController < ApplicationController
 
-  before_action :find_character, except: [ :create ]
+  before_action :find_character, except: [ :create, :monster ]
   before_action :find_opponent, only: [ :update ]
   before_action :authorize
 
@@ -14,9 +14,7 @@ class CharactersController < ApplicationController
   end
 
   def update
-    # use a case statement to evaluate the action param
-    # then call the appropriate character class method based
-    # passing in any needed arguments
+    # byebug
     @character.attack(@opponent)
     render json: @opponent, status: :accepted
   end
@@ -24,6 +22,12 @@ class CharactersController < ApplicationController
   def destroy
     @character.destroy
     head :no_content
+  end
+
+  def monster
+    monster = Character.where("character_type = '1'").sample
+    # byebug
+    render json: monster, status: :ok
   end
 
   private 
