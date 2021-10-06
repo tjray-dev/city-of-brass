@@ -50,7 +50,8 @@ const Login = () => {
           name="login"
           value="Login"
         />
-        <button class="button is-link is-small is-rounded" onClick={handleClick}>signup</button>
+        <button class="button is-link is-small is-rounded" onClick={() => history.push('/signup')}>signup</button>
+        <button class="button is-small is-danger is-outlined is-rounded" onClick={() => history.push('/')}>Cancel</button>
       </div>
     </form>
   )

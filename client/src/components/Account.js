@@ -41,7 +41,7 @@ const Account = () => {
       {user.character_id ? 
           <button class="button is-primary is-large is-rounded" onClick={handleRoom}>Enter The City</button> 
         : 
-          <button onClick={() => history.push('/character')}>Character Creation</button>
+          <button class="button is-primary is-rounded is-large" onClick={() => history.push('/character')}>Character Creation</button>
       }
       <Logout />
     </div>

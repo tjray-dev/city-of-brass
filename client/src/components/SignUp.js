@@ -5,7 +5,7 @@ import { name, password, passwordConfirmation, setUser } from '../slices/userSli
 
 const SignUp = () => {
 
-  const user = useSelector( state => state.user )
+  const user = useSelector(state => state.user)
   const dispatch = useDispatch()
   const history = useHistory()
 
@@ -21,7 +21,7 @@ const SignUp = () => {
     dispatch(passwordConfirmation(e.target.value))
   }
 
-  const handleSignUp = e =>{
+  const handleSignUp = e => {
     e.preventDefault()
     fetch('/users', {
       method: "POST",
@@ -29,35 +29,38 @@ const SignUp = () => {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(user),
-    }).then( r => r.json() )
-        .then( data => dispatch(setUser(data)) )
-          .then( history.push('/account') )
+    }).then(r => r.json())
+      .then(data => dispatch(setUser(data)))
+      .then(history.push('/account'))
   }
 
   return (
-    <form style={{ 'display' : 'flex', 'align-items' : 'center', 'flex-direction' : 'column'}} onSubmit={ e =>handleSignUp(e) }>
+    <form style={{ 'display': 'flex', 'align-items': 'center', 'flex-direction': 'column' }} onSubmit={e => handleSignUp(e)}>
       <label for="user_name">User Name</label>
       <input type="text"
-             name="user_name"
-             placeholder="User Name"
-             onChange={ e => handleName(e) }
+        name="user_name"
+        placeholder="User Name"
+        onChange={e => handleName(e)}
       />
       <label for="password">Password</label>
       <input type="text"
-             name="password"
-             placeholder="Password"
-             onChange={ e =>handlePassword(e) }
+        name="password"
+        placeholder="Password"
+        onChange={e => handlePassword(e)}
       />
       <label for="password_confirmation">Re-Enter Password</label>
       <input type="text"
-             name="password_confirmation"
-             placeholder="Password Confirmation"
-             onChange={ e => handlePasswordConfirmation(e) }
+        name="password_confirmation"
+        placeholder="Password Confirmation"
+        onChange={e => handlePasswordConfirmation(e)}
       />
-      <input type="submit"
-             name="submit"
-             value="sign up"
-      />
+      <div>
+        <input class="button is-primary is-rounded is-small" type="submit"
+          name="submit"
+          value="sign up"
+        />
+        <button class="button is-small is-danger is-outlined is-rounded" onClick={() => history.push('/')}>Cancel</button>
+      </div>
     </form>
   )
 }

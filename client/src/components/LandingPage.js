@@ -29,7 +29,7 @@ const LandingPage = () => {
         Welcome to The City of Brass!
         {/* fill this with more flavor text */}
       </p>
-        <button class=" button is-primary is-large is-rounded is-inverted" onClick={() => history.push('/login')}>START!!!</button>
+        <button class=" button is-primary is-large is-rounded is-outlined" onClick={() => history.push('/login')}>START!!!</button>
     </div>
   )
 }
