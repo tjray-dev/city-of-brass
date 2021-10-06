@@ -35,25 +35,25 @@ const SignUp = () => {
   }
 
   return (
-    <form onSubmit={ e =>handleSignUp(e) }>
+    <form style={{ 'display' : 'flex', 'align-items' : 'center', 'flex-direction' : 'column'}} onSubmit={ e =>handleSignUp(e) }>
+      <label for="user_name">User Name</label>
       <input type="text"
              name="user_name"
              placeholder="User Name"
              onChange={ e => handleName(e) }
       />
-      <br/>
+      <label for="password">Password</label>
       <input type="text"
              name="password"
              placeholder="Password"
              onChange={ e =>handlePassword(e) }
       />
-      <br/>
+      <label for="password_confirmation">Re-Enter Password</label>
       <input type="text"
              name="password_confirmation"
              placeholder="Password Confirmation"
              onChange={ e => handlePasswordConfirmation(e) }
       />
-      <br/>
       <input type="submit"
              name="submit"
              value="sign up"

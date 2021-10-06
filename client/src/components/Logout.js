@@ -25,7 +25,7 @@ const Logout = () => {
 
   return (
     <>
-      <button onClick={handleLogOut}>Log Out</button>
+      <button class=" button is-warning is-small is-rounded" onClick={handleLogOut}>Log Out</button>
     </>
   )
 }
