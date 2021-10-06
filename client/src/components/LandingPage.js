@@ -23,14 +23,13 @@ const LandingPage = () => {
       //   .then(() => history.push('/account'))
   })
   return (
-    <div style={{'margin-top': '100px', 'margin-left': '300px',}}>
-      <h1>THE CITY OF BRASS</h1>
+    <div style={{ 'display' : 'flex', 'justify-content' : 'center', 'align-content' : 'center'}}>
+      <h1 class="is-size-1">THE CITY OF BRASS</h1>
       <p>
         Welcome to The City of Brass!
       </p>
         <button onClick={() => history.push('/login')}>Log In</button>
     </div>
-
   )
 }
 

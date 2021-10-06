@@ -15,16 +15,20 @@ export const login = createAsyncThunk(
   }
 )
 
-// export const me = createAsyncThunk(
-//   'users/meStatus',
-//   async (user, thunkAPI) => {
-//     const response = await fetch('/me')
-//     if (response.ok){
-//       const data = await response.json()
-//       return data
-//     }
-//   }
-// )
+export const addCharacter = createAsyncThunk(
+  'users/loginStatus',
+  async (user, thunkAPI) => {
+    const response = await fetch('/users/${user.id}', {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(user),
+    })
+    const data = await response.json()
+    return data
+  }
+)
 
 const slice = createSlice({
   name: 'user',
@@ -53,6 +57,11 @@ const slice = createSlice({
       state.user_name = payload.user.user_name
       state.session_id = payload.session_id
       state.character_id = payload.user.character_id
+    },
+    setCharacterId: (state, { payload }) => {
+      console.log("THIS IS THE PAYLOAD")
+      console.log(payload)
+      // state.character_id = payload
     }
   },
   extraReducers: {
@@ -61,7 +70,7 @@ const slice = createSlice({
   }
 })
 
-const { name, password, passwordConfirmation, setUser } = slice.actions
+const { name, password, passwordConfirmation, setUser, setCharacterId } = slice.actions
 
-export { name, password, passwordConfirmation, setUser } 
+export { name, password, passwordConfirmation, setUser, setCharacterId } 
 export default slice.reducer

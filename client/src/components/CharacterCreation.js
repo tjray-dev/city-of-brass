@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
 import { name, origin, setCharacter } from '../slices/characterSlice'
+import { setCharacterId } from '../slices/userSlice'
 
 // dispatch character id to the user.character_id then thunk update the user
 const CharacterCreation = () => {
@@ -19,8 +20,11 @@ const CharacterCreation = () => {
       },
       body: JSON.stringify(character)
     }).then( r => r.json() )
-        .then( data => dispatch(setCharacter(data)))
-          .then(history.push('/room'))
+        .then( data => {
+          dispatch(setCharacter(data))
+          dispatch(setCharacterId(data))
+        })
+          .then(history.push('/account'))
   }
 
   return (
@@ -30,7 +34,7 @@ const CharacterCreation = () => {
           <input type="text"
             name="character_name"
             placeholder="Character Name"
-            onChange={ e => dispatch(name(e.target.value)) }
+            onChange={ e => console.log(e.target.value) }
           />
           <select name="character_origin" 
                   id="origin" 

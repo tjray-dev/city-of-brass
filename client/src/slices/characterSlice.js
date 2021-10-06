@@ -12,6 +12,7 @@ export const fetchCharacter = createAsyncThunk(
 const slice = createSlice({
   name: 'character',
   initialState: {
+    character_id: 0,
     character_name: "",
     character_origin: "",
     current_hp: 0,
@@ -20,7 +21,9 @@ const slice = createSlice({
   },
   reducers: {
     name: ( state, { payload } ) => {
-      state.character_name = payload.character_name
+      console.log("THIS IS THE CHARACTER CREATION PAYLOAD")
+      console.log(payload)
+      state.character_name = payload
     },
     origin: ( state, { payload } ) => {
       state.character_origin = payload.character_origin

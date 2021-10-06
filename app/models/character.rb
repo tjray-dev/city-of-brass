@@ -11,7 +11,8 @@ class Character < ApplicationRecord
   validates :character_hp, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100}
 
   def attack(opponent)
-    opponent.character_hp -= 5
+    damage = ((rand(1..10) + self.attack_bonus) - opponent.defense_bonus)
+    opponent.character_hp -= damage.positive? ? damage : 0
     opponent.save!
   end
   
