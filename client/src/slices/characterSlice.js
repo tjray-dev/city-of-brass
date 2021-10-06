@@ -21,12 +21,10 @@ const slice = createSlice({
   },
   reducers: {
     name: ( state, { payload } ) => {
-      console.log("THIS IS THE CHARACTER CREATION PAYLOAD")
-      console.log(payload)
       state.character_name = payload
     },
     origin: ( state, { payload } ) => {
-      state.character_origin = payload.character_origin
+      state.character_origin = payload
     },
     setCharacter: (state, { payload } ) => {
       state.character_name = payload.character_name

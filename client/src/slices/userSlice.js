@@ -16,14 +16,16 @@ export const login = createAsyncThunk(
 )
 
 export const addCharacter = createAsyncThunk(
-  'users/loginStatus',
+  'users/addCharStatus',
   async (user, thunkAPI) => {
-    const response = await fetch('/users/${user.id}', {
+    console.log("THIS IS THE USER PARAM FROM INSIDE THE ADD CHARACTER THUNK!")
+    console.log(user)
+    const response = await fetch(`/users/${user.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify({ character_id: user.character_id}),
     })
     const data = await response.json()
     return data
@@ -59,14 +61,12 @@ const slice = createSlice({
       state.character_id = payload.user.character_id
     },
     setCharacterId: (state, { payload }) => {
-      console.log("THIS IS THE PAYLOAD")
-      console.log(payload)
-      // state.character_id = payload
+      state.character_id = payload
     }
   },
   extraReducers: {
     [login.fulfilled]: (state, { payload }) => {},
-    // [me.fulfilled]: (state, { payload }) => {},
+    [addCharacter.fulfilled]: (state, { payload }) => {},
   }
 })
 
