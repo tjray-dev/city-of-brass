@@ -10,17 +10,17 @@ const Monster = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    setTimeout( () => {
-      fetch(`/characters/${room.monster_id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ opponent_id: room.character_id})
-      }).then(r => r.json()).then( data => {
-        dispatch(setCharacter(data))
-      } )
-    }, 5000)
+    // setTimeout( () => {
+    //   fetch(`/characters/${room.monster_id}`, {
+    //     method: "PATCH",
+    //     headers: {
+    //       "Content-Type": "application/json"
+    //     },
+    //     body: JSON.stringify({ opponent_id: room.character_id})
+    //   }).then(r => r.json()).then( data => {
+    //     dispatch(setCharacter(data))
+    //   } )
+    // }, 5000)
   }, [room, monster])
   return (
     <div style={{ 'display': 'flex', 'justify-content': 'flex-end' }}>

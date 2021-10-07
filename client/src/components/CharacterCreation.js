@@ -20,8 +20,7 @@ const CharacterCreation = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(character)
-    }).then(r => r.json())
-      .then(data => {
+    }).then(r => r.json()).then(data => {
         dispatch(setCharacterId(data.character.id))
       }).then(history.push('/account'))
   }
