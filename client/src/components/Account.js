@@ -27,6 +27,12 @@ const Account = () => {
       })
       .then(() => history.push('/room'))
   }
+
+  const handleDelete = () => {
+    fetch(`/users/${user.id}`, {method: "DELETE"})
+    .then(history.push('/'))
+    .then(alert("ACCOUNT DELETED"))
+  }
   useEffect(() => {
     fetch('/me').then(r => {
       if (r.ok) {
@@ -44,6 +50,7 @@ const Account = () => {
           <button class="button is-primary is-rounded is-large" onClick={() => history.push('/character')}>Character Creation</button>
       }
       <Logout />
+      <button onClick={handleDelete}>Delete Account</button>
     </div>
   )
 }

@@ -46,17 +46,17 @@ const Room = () => {
       <Character />
       <p class="is-flex is-justify-content-center">
         *******************************
-        <br/>
+        <br />
         *******************************
-        <br/>
+        <br />
         *******************************
-        <br/>
+        <br />
         **** Insert Room Text Here ****
-        <br/>
+        <br />
         *******************************
-        <br/>
+        <br />
         *******************************
-        <br/>
+        <br />
         *******************************
       </p>
       <Monster />
@@ -64,8 +64,8 @@ const Room = () => {
         <button class="button is-success">HEAL</button>
         <button class="button is-danger">SPECIAL</button>
         <button class="button is-warning" onClick={() => history.push('/account')}>FLEE</button>
-          <span>Hero Action:</span><progress class="progress is-warning" value='1000' max="3000" style={{ 'width' : '20%'}}>100</progress>
-          <span>Monster Action:</span><progress class="progress is-warning" value='2000' max="3000" style={{ 'width' : '20%'}}>100</progress>
+        <span>Hero Action:</span><progress class="progress is-warning" value='1000' max="3000" style={{ 'width': '20%' }}>100</progress>
+        <span>Monster Action:</span><progress class="progress is-warning" value='2000' max="3000" style={{ 'width': '20%' }}>100</progress>
       </div>
 
 

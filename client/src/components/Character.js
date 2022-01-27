@@ -14,17 +14,17 @@ const Character = () => {
   const character = useSelector(state => state.character)
 
   useEffect(() => {
-    // setTimeout( () => {
-    //   fetch(`/characters/${room.character_id}`, {
-    //     method: "PATCH",
-    //     headers: {
-    //       "Content-Type": "application/json"
-    //     },
-    //     body: JSON.stringify({ opponent_id: room.monster_id})
-    //   }).then(r => r.json()).then( data => {
-    //     dispatch(setMonster(data))
-    //   } )
-    // }, 2000)
+    setTimeout( () => {
+      fetch(`/characters/${room.character_id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ opponent_id: room.monster_id})
+      }).then(r => r.json()).then( data => {
+        dispatch(setMonster(data))
+      } )
+    }, 2000)
   }, [room, character])
   return (
     <>
