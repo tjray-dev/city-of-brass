@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 export const fetchCharacter = createAsyncThunk(
-  'characters/characterStatus',
+  'character/characterStatus',
   async (character_id, thunkApi) => {
     const response = await fetch(`/characters/${character_id}`)
     const data = await response.json()
@@ -12,34 +12,25 @@ export const fetchCharacter = createAsyncThunk(
 const slice = createSlice({
   name: 'character',
   initialState: {
-    character_id: 0,
-    character_name: "",
-    character_origin: "",
-    current_hp: 0,
-    attack_bonus: 0,
-    defense_bonus: 0,
+    name: "",
+    charType: 0,
+    mind: 0,
+    body: 0,
+    spirit: 0,
   },
-  reducers: {
-    name: ( state, { payload } ) => {
-      state.character_name = payload
-    },
-    origin: ( state, { payload } ) => {
-      state.character_origin = payload
-    },
-    setCharacter: (state, { payload } ) => {
-      state.character_name = payload.character_name
-      state.character_origin = payload.character_origin
-      state.current_hp = payload.character_hp
-      state.attack_bonus = payload.attack_bonus
-      state.defense_bonus = payload.defense_bonus
-    }
-  },
+  reducers: {},
     extraReducers: {
-      [fetchCharacter.fulfilled]: (state, { payload } ) => {},
+      [fetchCharacter.fulfilled]: (state, { payload } ) => {
+        state.name = payload.character_name
+        state.charType = payload.character_type
+        state.mind = payload.mind
+        state.body = payload.body
+        state.spirit = payload.spirit
+      },
     }
 })
 
-const { name, origin, setCharacter } = slice.actions
+const { setEnemy } = slice.actions
 
-export  { name, origin, setCharacter } 
+export  { setEnemy } 
 export default slice.reducer

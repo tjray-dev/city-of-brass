@@ -1,9 +1,5 @@
 class CharactersController < ApplicationController
-
-  before_action :find_user
-  before_action :find_character, except: [ :create, :monster ]
-  before_action :find_opponent, only: [ :update ]
-  before_action :authorize
+  before_action :find_character
 
   def create
     character = Character.create(character_params)
@@ -12,6 +8,7 @@ class CharactersController < ApplicationController
   end
 
   def show
+    puts @character
     render json: @character, status: :ok
   end
 
@@ -31,20 +28,12 @@ class CharactersController < ApplicationController
   end
 
   private 
-
-  def find_user 
-    @user = User.find(session[:user_id])
-  end
-
+  
   def character_params
     params.permit(:character_name, :character_origin)
   end
 
   def find_character
     @character = Character.find(params[:id])
-  end
-
-  def find_opponent
-    @opponent = Character.find(params[:opponent_id])
   end
 end

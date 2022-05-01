@@ -1,54 +1,42 @@
-import { useSelector, useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useEffect } from 'react'
+import {useHistory} from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
-import { name, origin, setCharacter } from '../slices/characterSlice'
-import { setCharacterId, addCharacter } from '../slices/userSlice'
+import { name, origin, background } from '../slices/playerSlice'
 
-// dispatch character id to the user.character_id then thunk update the user
 const CharacterCreation = () => {
 
-  const character = useSelector(state => state.character)
-  const user = useSelector(state => state.user)
-  const dispatch = useDispatch()
   const history = useHistory()
+  const dispatch = useDispatch()
 
-  const handleCreateCharacter = e => {
-    e.preventDefault()
-    fetch('/characters', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(character)
-    }).then(r => r.json()).then(data => {
-        dispatch(setCharacterId(data.character.id))
-      }).then(history.push('/account'))
-  }
-
-  return (
-    <form style={{ 'display': 'flex', 'align-items': 'center', 'flex-direction': 'column' }} onSubmit={e => handleCreateCharacter(e)}>
-      <label for="character_name">Character Name</label>
-      <input type="text"
-        name="character_name"
-        placeholder="Character Name"
-        onChange={e => dispatch(name(e.target.value))}
-      />
-      <label for="character_origin">Origin</label>
-      <select name="character_origin"
-        id="origin"
-        onChange={e => dispatch(origin(e.target.value))}
-      >
-        <option value="North">North</option>
-        <option value="South">South</option>
-        <option value="East">East</option>
-        <option value="West">West</option>
-      </select>
-      <input class="button is-primary is-rounded is-small" type="submit"
-        name="creation"
-        value="Create Character"
-      />
-      <button class="button is-small is-danger is-outlined is-rounded" onClick={() => history.push('/account')}>Cancel</button>
-    </form>
+  return(
+    <div>
+      <p>You have wandered so long you scarce remember your life before the heat and sand of the desert.</p>
+      <form onSubmit={ () => history.push('/encounter')}>
+        <label>
+          Name: <input type='text' name='character' onChange={ e => dispatch(name(e.target.value)) }/>
+        </label>
+        <label>
+          Homeland: 
+            <select name='origin' onChange={ e => dispatch(origin(e.target.value)) }>
+              <option value='north'>North</option>
+              <option value='south'>South</option>
+              <option value='east'>East</option>
+              <option value='west'>West</option>
+            </select>
+        </label>
+        <label>
+          Background: 
+            <select name='background' onChange={e => dispatch(background(e.target.value))}>
+              <option value='peasant'>Peasant</option>
+              <option value='priest'>Priest</option>
+              <option value='nobel'>Noble</option>
+              <option value='soldier'>Soldier</option>
+            </select>
+        </label>
+        <input type='submit' value='Submit' />
+      </form>
+    </div>
   )
 }
 

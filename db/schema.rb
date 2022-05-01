@@ -10,75 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_02_222240) do
+ActiveRecord::Schema.define(version: 2021_09_25_215700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "character_items", force: :cascade do |t|
-    t.bigint "character_id", null: false
-    t.bigint "item_id", null: false
-    t.integer "level"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["character_id"], name: "index_character_items_on_character_id"
-    t.index ["item_id"], name: "index_character_items_on_item_id"
-  end
-
-  create_table "character_skills", force: :cascade do |t|
-    t.bigint "skill_id", null: false
-    t.bigint "character_id", null: false
-    t.integer "level", default: 0
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["character_id"], name: "index_character_skills_on_character_id"
-    t.index ["skill_id"], name: "index_character_skills_on_skill_id"
-  end
-
   create_table "characters", force: :cascade do |t|
     t.string "character_name"
-    t.text "character_origin"
     t.integer "character_type", default: 0
-    t.integer "character_hp", default: 100
-    t.integer "attack_bonus", default: 1
-    t.integer "defense_bonus", default: 1
+    t.integer "mind"
+    t.integer "body"
+    t.integer "spirit"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "items", force: :cascade do |t|
-    t.string "name"
-    t.string "desc"
-    t.integer "item_type"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "rooms", force: :cascade do |t|
-    t.string "room_name"
-    t.text "room_desc"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "skills", force: :cascade do |t|
-    t.string "name"
-    t.string "desc"
-    t.integer "skill_type"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "user_name"
-    t.string "password_digest"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "character_id"
-  end
-
-  add_foreign_key "character_items", "characters"
-  add_foreign_key "character_items", "items"
-  add_foreign_key "character_skills", "characters"
-  add_foreign_key "character_skills", "skills"
 end

@@ -1,33 +1,29 @@
 import { BrowserRouter, Switch, Route, useHistory } from "react-router-dom"
-import { useEffect } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import LandingPage from './components/LandingPage'
-import Login from './components/Login'
-import SignUp from './components/SignUp'
-import Account from './components/Account'
 import CharacterCreation from './components/CharacterCreation'
-import Room from './components/Room'
+import Oasis from './components/Oasis'
+import Encounter from './components/Encounter'
+import Loading from './components/Loading'
 
 function App() {
 
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/room">
-          <Room />
+        <Route path="/encounter">
+          <Encounter />
         </Route>
-        <Route path="/character">
+        <Route path="loading">
+          <Loading />
+        </Route>
+        <Route path="/lost_oasis">
+          <Oasis />
+        </Route>
+        <Route path="/origin">
           <CharacterCreation />
-        </Route>
-        <Route path="/account">
-          <Account />
-        </Route>
-        <Route path="/signup">
-          <SignUp />
-        </Route>
-        <Route path="/login">
-          <Login />
         </Route>
         <Route path="/">
           <LandingPage />
