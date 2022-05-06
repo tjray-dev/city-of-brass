@@ -8,7 +8,6 @@ class CharactersController < ApplicationController
   end
 
   def show
-    puts @character
     render json: @character, status: :ok
   end
 

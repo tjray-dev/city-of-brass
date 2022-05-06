@@ -19,9 +19,6 @@ const CharacterCreation = () => {
       <p>You have wandered so long you scarce remember your life before the heat and sand of the desert.</p>
       <form onSubmit={ (e) => handleCreation(e)}>
         <label>
-          Name: <input type='text' name='character' onChange={ e => dispatch(name(e.target.value)) }/>
-        </label>
-        <label>
           Homeland: 
             <select name='origin' onChange={ e => dispatch(origin(e.target.value)) }>
               <option value='north'>North</option>

@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 export const fetchItem = createAsyncThunk(
   'item/itemStatus',
   async (thunkApi) => {
-    const response = await fetch('/items/loot')
+    const response = await fetch('/items/1')
     const data = await response.json()
     return data
   }
@@ -12,7 +12,6 @@ export const fetchItem = createAsyncThunk(
 const slice = createSlice({
   name: 'player',
   initialState: {
-    name: "",
     origin: "",
     background: "",
     mind: 0,
@@ -25,9 +24,6 @@ const slice = createSlice({
     exp: 0,
   },
   reducers: {
-    name: ( state, { payload } ) => {
-      state.name = payload
-    },
     origin: ( state, { payload } ) => {
       state.origin = payload
       switch(payload){
@@ -86,9 +82,14 @@ const slice = createSlice({
       state.exp = state.exp + payload
     }
   },
+    extraReducers: {
+      [fetchItem.fulfilled]: (state, { payload } ) => {
+      state.inventory = {...state.inventory, payload}
+      }
+    }
 })
 
-const { name, origin, background, initializePlayer, playerHpDown, playerMpDown, playerApDown, playerHpUp, playerMpUp, playerApUp, playerExpUp } = slice.actions
+const { origin, background, initializePlayer, playerHpDown, playerMpDown, playerApDown, playerHpUp, playerMpUp, playerApUp, playerExpUp } = slice.actions
 
-export  { name, origin, background, initializePlayer, playerHpDown, playerMpDown, playerApDown, playerHpUp, playerMpUp, playerApUp, playerExpUp } 
+export  { origin, background, initializePlayer, playerHpDown, playerMpDown, playerApDown, playerHpUp, playerMpUp, playerApUp, playerExpUp } 
 export default slice.reducer

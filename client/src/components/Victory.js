@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
-import { playerExpUp } from '../slices/playerSlice'
+import { playerExpUp, fetchItem } from '../slices/playerSlice'
 
 const Victory = () => {
 
@@ -14,8 +14,8 @@ const Victory = () => {
 
   useEffect(() => {
     dispatch(playerExpUp(10))
-    
-  })
+    dispatch(fetchItem())
+  }, [dispatch])
   return(
     <div>
       <h1>Great Job!</h1>
