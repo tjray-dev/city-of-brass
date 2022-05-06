@@ -4,10 +4,11 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import Loading from './Loading'
 import NPC from './NPC'
-import Battle from './Battle'
 import Boss from './Boss'
+import Battle from './Battle'
 
-import { fetchCharacter } from '../slices/characterSlice'
+import { fetchCharacter, initializePoints } from '../slices/characterSlice'
+import { initializePlayer } from '../slices/playerSlice'
 
 const Encounter = () => {
 
@@ -15,9 +16,12 @@ const Encounter = () => {
   const history = useHistory()
 
   const character = useSelector(state => state.character)
-  
+
   useEffect(() => {
-    dispatch(fetchCharacter(1))
+    dispatch(fetchCharacter(1)).then(() => {
+      dispatch(initializePoints())
+      dispatch(initializePlayer())
+    })
   }, [])
 
   const whichCharacter = (charType) => {
@@ -29,12 +33,11 @@ const Encounter = () => {
       case 3:
         return <Boss />
       default: 
-        console.log(character)
-        history.push('/loading')
+        return <Loading />
     }
   }
 
-  return character.charType ? whichCharacter(character.charType) : <Loading />
+  return whichCharacter(character.charType)
 
 }
 

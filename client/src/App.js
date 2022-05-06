@@ -7,17 +7,18 @@ import CharacterCreation from './components/CharacterCreation'
 import Oasis from './components/Oasis'
 import Encounter from './components/Encounter'
 import Loading from './components/Loading'
+import Battle from './components/Battle'
 
 function App() {
 
   return (
     <BrowserRouter>
       <Switch>
+      <Route path="/battle">
+          <Battle />
+        </Route>
         <Route path="/encounter">
           <Encounter />
-        </Route>
-        <Route path="loading">
-          <Loading />
         </Route>
         <Route path="/lost_oasis">
           <Oasis />

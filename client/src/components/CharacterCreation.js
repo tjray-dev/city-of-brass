@@ -9,10 +9,15 @@ const CharacterCreation = () => {
   const history = useHistory()
   const dispatch = useDispatch()
 
+  const handleCreation = (e) => {
+    e.preventDefault()
+    history.push('/encounter')
+  }
+
   return(
     <div>
       <p>You have wandered so long you scarce remember your life before the heat and sand of the desert.</p>
-      <form onSubmit={ () => history.push('/encounter')}>
+      <form onSubmit={ (e) => handleCreation(e)}>
         <label>
           Name: <input type='text' name='character' onChange={ e => dispatch(name(e.target.value)) }/>
         </label>
