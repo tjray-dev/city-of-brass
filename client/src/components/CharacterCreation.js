@@ -11,7 +11,7 @@ const CharacterCreation = () => {
 
   const handleCreation = (e) => {
     e.preventDefault()
-    history.push('/encounter')
+    history.push('/lost_oasis')
   }
 
   return(

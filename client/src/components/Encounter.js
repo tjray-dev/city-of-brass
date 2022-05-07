@@ -26,12 +26,12 @@ const Encounter = () => {
 
   const whichCharacter = (charType) => {
     switch(charType){
-      case 2:
-        return <NPC />
+      case 0:
+        return <Boss />
       case 1:
         return <Battle />
-      case 3:
-        return <Boss />
+      case 2:
+        return <NPC />
       default: 
         return <Loading />
     }
