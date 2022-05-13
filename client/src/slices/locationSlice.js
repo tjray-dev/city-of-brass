@@ -12,22 +12,30 @@ export const fetchLocation = createAsyncThunk(
 const slice = createSlice({
   name: 'location',
   initialState: {
+    id: 0,
     name: "",
     description: "",
     locationType: 0,
+    encountersRemaining: 0
   },
-  reducers: {},
+  reducers: {
+    clearEncounter: (state) => {
+      state.encountersRemaining = state.encountersRemaining - 1
+    }
+  },
     extraReducers: {
       [fetchLocation.fulfilled]: (state, { payload } ) => {
+        state.id = payload.id
         state.name = payload.location_name
         state.locationType = payload.location_type
         state.description = payload.location_description
+        state.encountersRemaining = 3
       },
     }
 })
 
-const { initializePoints, charHpDown, charApDown, CharMpDown, charHpUp, charApUp, charMpUp } = slice.actions
+const { clearEncounter } = slice.actions
 
-export  { initializePoints, charHpDown, charApDown, CharMpDown, charHpUp, charApUp, charMpUp }
+export  { clearEncounter }
 
 export default slice.reducer

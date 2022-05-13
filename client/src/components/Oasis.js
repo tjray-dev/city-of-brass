@@ -25,7 +25,7 @@ const Oasis = () => {
         Across from you stands the crumbled remains of a massive city gate.
       </p>
 
-      { location.name === "" ? null : <button onClick={() => history.push('/encounter')}>Pass through the gate</button> }
+      { location.name === "" ? null : <button onClick={() => history.push('/location')}>Pass through the gate</button> }
     </div>
   )
 }

@@ -1,5 +1,6 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 import Victory from './Victory'
 import Defeat from './Defeat'
@@ -10,9 +11,16 @@ import { playerHpDown, playerMpDown, playerApDown, playerHpUp, playerMpUp, playe
 const Battle = () => {
 
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const player = useSelector(state => state.player)
   const enemy = useSelector(state => state.character)
+  const [intervalId, setIntervalId] = useState(0)
+
+  const enemyAttack = () => {
+    dispatch(charApDown(enemy.spirit * 10))
+    dispatch(playerHpDown(enemy.body * 10))
+  }
 
   const attack = () => {
       dispatch(playerApDown(player.spirit * 10))
@@ -24,28 +32,42 @@ const Battle = () => {
     dispatch(playerMpDown(player.spirit * 10))
   }
 
+  const victory = () => {
+    if(enemy.hp <= 0){
+      return history.push('/victory')
+    }
+  }
+  const defeat = () => {
+    if(player.hp <= 0){
+      return history.push('/defeat')
+    }
+  }
+
   useEffect(() => {
-    setInterval(() => dispatch(playerHpDown(enemy.body * 10)), 5000)
-  }, [dispatch])
-  if(enemy.hp <= 0){
-    return <Victory />
-  }
-  if(player.hp <= 0){
-    return <Defeat />
-  }
+    victory()
+    defeat()
+    const intervalId =  setInterval(() => {
+      enemyAttack()
+    }, 5000)
+    return () => clearInterval(intervalId)
+  }, [enemyAttack])
+
   return(
     <>
       <h1>A Fight!</h1>
-      <h1>{enemy.hp}</h1>
+      <div>
+        <h1>{enemy.name}</h1>
+        <h1>{enemy.hp}</h1>
+      </div>
       <div>
         <h1>{player.name}</h1>
         <h1>{player.hp}</h1>
         <h1>{player.ap}</h1>
         <h1>{player.mp}</h1>
       </div>
-      <button onClick={() => attack(player, enemy)}>Attack</button>
-      <button onClick={() => heal(player)}>Heal</button>
-      <button onClick={() => console.log("Run Away")}>Flee</button>
+      { player.ap <= 0 ? null : <button onClick={() => attack(player, enemy)}>Attack</button> }
+      { player.mp === 0 ? null : <button onClick={() => heal(player)}>Heal</button> }
+      <button onClick={() => history.push('/location')}>Flee</button>
     </>
   )
 }

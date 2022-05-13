@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 export const fetchItem = createAsyncThunk(
   'item/itemStatus',
-  async (thunkApi) => {
+  async () => {
     const response = await fetch('/items/1')
     const data = await response.json()
     return data
@@ -52,7 +52,7 @@ const slice = createSlice({
           break;
       }
     },
-    background: (state, payload) => {
+    background: (state, { payload }) => {
       state.background = payload;
     },
     initializePlayer: (state) => {
@@ -82,11 +82,6 @@ const slice = createSlice({
       state.exp = state.exp + payload
     }
   },
-    extraReducers: {
-      [fetchItem.fulfilled]: (state, { payload } ) => {
-      state.inventory = {...state.inventory, payload}
-      }
-    }
 })
 
 const { origin, background, initializePlayer, playerHpDown, playerMpDown, playerApDown, playerHpUp, playerMpUp, playerApUp, playerExpUp } = slice.actions

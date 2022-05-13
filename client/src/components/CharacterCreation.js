@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import {useHistory} from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
-import { name, origin, background } from '../slices/playerSlice'
+import { origin, background, initializePlayer } from '../slices/playerSlice'
 
 const CharacterCreation = () => {
 
@@ -11,6 +11,7 @@ const CharacterCreation = () => {
 
   const handleCreation = (e) => {
     e.preventDefault()
+    dispatch(initializePlayer())
     history.push('/lost_oasis')
   }
 

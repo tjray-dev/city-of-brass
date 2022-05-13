@@ -1,25 +1,30 @@
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
-import { playerExpUp, fetchItem } from '../slices/playerSlice'
+import { playerExpUp } from '../slices/playerSlice'
+import { fetchItem } from '../slices/inventorySlice'
+import { clearEncounter } from '../slices/locationSlice'
 
 const Victory = () => {
 
-  // dispatch level
-  // fetch an item from the database 
-  // dispatch item to inventory
-  // push to location page
-
   const dispatch = useDispatch()
+  const history = useHistory()
 
   useEffect(() => {
     dispatch(playerExpUp(10))
     dispatch(fetchItem())
+    dispatch(clearEncounter())
   }, [dispatch])
   return(
-    <div>
-      <h1>Great Job!</h1>
-    </div>
+    <>
+      <div>
+        <h1>Great Job!</h1>
+      </div>
+      <div>
+        <button onClick={() => history.push('/location')}>Continue On</button>
+      </div>
+    </>
   )
 }
 

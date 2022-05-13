@@ -15,6 +15,10 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   get '/monster', to: 'characters#monster'
+  get '/boss', to: 'characters#boss'
+  get '/npc', to: 'characters#npc'
+
+  get '/loot', to: 'items#loot'
 
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end

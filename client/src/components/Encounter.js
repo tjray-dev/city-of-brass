@@ -7,7 +7,7 @@ import NPC from './NPC'
 import Boss from './Boss'
 import Battle from './Battle'
 
-import { fetchCharacter, initializePoints } from '../slices/characterSlice'
+import { fetchMonster, fetchBoss, fetchNpc, initializePoints } from '../slices/characterSlice'
 import { initializePlayer } from '../slices/playerSlice'
 
 const Encounter = () => {
@@ -16,28 +16,25 @@ const Encounter = () => {
   const history = useHistory()
 
   const character = useSelector(state => state.character)
+  const location = useSelector(state => state.location)
 
-  useEffect(() => {
-    dispatch(fetchCharacter(1)).then(() => {
-      dispatch(initializePoints())
-      dispatch(initializePlayer())
-    })
-  }, [])
+  const whichCharacter = () => {
 
-  const whichCharacter = (charType) => {
-    switch(charType){
-      case 0:
-        return <Boss />
+    switch(character.charType){
       case 1:
-        return <Battle />
+        return <Boss />
       case 2:
+        return <Battle />
+      case 3:
         return <NPC />
       default: 
         return <Loading />
     }
   }
 
-  return whichCharacter(character.charType)
+  useEffect(() => {
+  })
+  return whichCharacter()
 
 }
 
