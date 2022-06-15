@@ -1,5 +1,13 @@
 html, body, #root, .App {
   height: 100%;
+  color: white;
+}
+body{
+  background-image: url(./background.png);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .frame{
   position: absolute;
@@ -51,10 +59,51 @@ html, body, #root, .App {
 }
 
 .parallax-content{
-  border-width: 1px;
-  border-style:  solid;
-  border-color: black;
+  backdrop-filter: blur(5px);
+  text-align: center;
   height: auto;
   font-size: 36px;
   top: 10%;
+  left: 100px;
+}
+.landing-btn{
+  margin: 1em;
+  margin-bottom: 15px;
+}
+.location-block{
+  border: 2px solid black;
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  right: 25%;
+  backdrop-filter: blur(5px);
+  text-align: center;
+  padding: 10px;
+}
+.location-blurb{
+  font-size: 25px;
+}
+.inventory-menu{
+  display: flex;
+  position: absolute;
+  left: 15%;
+  right: 15%;
+  border: 5px solid black;
+  justify-content: space-around;
+  backdrop-filter: blur(5px);
+}
+.fight-block{
+  text-align: center;
+}
+.enemy-block{
+  position: absolute;
+  bottom: 10px;
+  left: 25%;
+  right: 25%;
+}
+.player-block{
+  position:absolute;
+  top: 15px;
+  left: 15px;
+  width: 25%;
 }

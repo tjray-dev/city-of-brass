@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { fetchLocation } from '../slices/locationSlice'
-import { fetchBoss, fetchMonster, fetchNpc } from '../slices/characterSlice'
+import { fetchBoss, fetchMonster } from '../slices/characterSlice'
+import { rest } from '../slices/playerSlice'
 
 import Loading from './Loading'
 
@@ -12,11 +13,15 @@ const Location =  () => {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const location = useSelector(state => state.location)
+  const enemies = useSelector( state => state.location.encounters_remaining )
+  const locationId = useSelector( state => state.location.id )
+  const name = useSelector( state => state.location.name )
+  const description = useSelector( state => state.location.description )
 
-  const goBack = () => {
-    dispatch(fetchLocation(location.id - 1))
-  }
+  const exp = useSelector( state => state.player.exp )
+  const actionPoints = useSelector( state => state.player.ap )
+  const spirit = useSelector( state => state.player.spirit )
+  const level = useSelector( state => state.player.level )
 
   const selectEncounter = () => {
     let encounterType = Math.floor(Math.random() * (4 - 1) + 1)
@@ -28,7 +33,7 @@ const Location =  () => {
         dispatch(fetchMonster())
         break;
       case 3:
-        dispatch(fetchNpc())
+        dispatch(fetchMonster())
         break;
       default:
         return <Loading />
@@ -36,8 +41,8 @@ const Location =  () => {
   }
 
   const pressOn = () => {
-    dispatch(fetchLocation(location.id + 1))
-
+    dispatch(fetchLocation(locationId + 1))
+    console.log('Once more into the breach my friends...')
   }
 
   useEffect(() => {
@@ -45,16 +50,16 @@ const Location =  () => {
   },)
 
   return(
-    <>
-    <div>
-      <h1>{location.name}</h1>
+    <div className='location-block'>
+      <h1>{name}</h1>
+      <p>{description}</p>
+      <div>
+        { exp >= 100 ? <button onClick={ () => history.push('/lost_oasis') }>Return to the Oasis</button> : null}
+        {enemies > 0 ? <button onClick={ pressOn }>Press on</button> : <button onClick={ () => history.push('/encounter') }>Explore</button>}
+        { actionPoints > 0 ? null : <button onClick={() => dispatch(rest())}>Rest</button> }
+        <button onClick={ () => history.push('/inventory') }>Inventory</button>
+      </div>
     </div>
-    <div>
-      <button onClick={ goBack }>Go Back</button>
-      {location.encountersRemaining === 0 ? null : <button onClick={ () => history.push('/encounter') }>Explore</button> }
-      {location.encountersRemaining > 0 ? null : <button onClick={ pressOn }>Press on</button>}
-    </div>
-    </>
   )
 }
 

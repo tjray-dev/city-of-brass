@@ -12,6 +12,7 @@ export const fetchItem = createAsyncThunk(
 const slice = createSlice({
   name: 'inventory',
   initialState: {
+    loot: {},
     weapon: [],
     armor: [],
     trinket: [],
@@ -23,15 +24,19 @@ const slice = createSlice({
         switch(payload.item_type){
           case 1:
             state.weapon.push(payload)
+            state.loot =  payload
             break;
           case 2:
             state.armor.push(payload)
+            state.loot =  payload
             break;
           case 3:
             state.trinket.push(payload)
+            state.loot =  payload
             break;
           case 4:
             state.key.push(payload)
+            state.loot =  payload
             break;
           default:
             console.log('Something\'s wrong, I can feel it')

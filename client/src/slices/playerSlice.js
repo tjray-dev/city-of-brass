@@ -17,8 +17,11 @@ const slice = createSlice({
     mind: 0,
     body: 1,
     spirit: 0,
+    maxHp: 0,
     hp: 0,
+    maxMp: 0,
     mp: 0,
+    maxAp: 0,
     ap: 0,
     level: 0,
     exp: 0,
@@ -56,6 +59,10 @@ const slice = createSlice({
       state.background = payload;
     },
     initializePlayer: (state) => {
+      state.maxHp = state.body * 100
+      state.maxMp = state.mind * 100
+      state.maxAp = state.spirit * 100
+
       state.hp = state.body * 100
       state.mp = state.mind * 100
       state.ap = state.spirit * 100
@@ -72,19 +79,24 @@ const slice = createSlice({
     playerHpUp: (state, { payload }) => {
       state.hp = state.hp + payload
     },
-    playerMpUp: (state, { payload }) => {
-      state.mp = state.mp + payload
-    },
-    playerApUp: (state, { payload }) => {
-      state.ap = state.ap + payload
+    rest: (state) => {
+      state.mp = state.mp + ( (state.mind + state.level) / 2) * 100
+      state.ap = state.ap + ( (state.spirit + state.level) / 2) * 100
     },
     playerExpUp: (state, { payload }) => {
       state.exp = state.exp + payload
+    },
+    level_up: (state, { payload }) => {
+      state.exp = state.exp - 100
+      state.level = state.level + 1
+      state.mind = state.mind + 1
+      state.body = state.body + 1
+      state.spirit = state.spirit + 1
     }
   },
 })
 
-const { origin, background, initializePlayer, playerHpDown, playerMpDown, playerApDown, playerHpUp, playerMpUp, playerApUp, playerExpUp } = slice.actions
+const { origin, background, initializePlayer, playerHpDown, playerMpDown, playerApDown, playerHpUp, playerExpUp, level_up, rest } = slice.actions
 
-export  { origin, background, initializePlayer, playerHpDown, playerMpDown, playerApDown, playerHpUp, playerMpUp, playerApUp, playerExpUp } 
+export  { origin, background, initializePlayer, playerHpDown, playerMpDown, playerApDown, playerHpUp, playerExpUp, level_up, rest } 
 export default slice.reducer

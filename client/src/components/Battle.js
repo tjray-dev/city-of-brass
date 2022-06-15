@@ -2,11 +2,10 @@ import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
-import Victory from './Victory'
-import Defeat from './Defeat'
+import{ charHpDown, charApDown } from '../slices/characterSlice'
+import { playerHpDown, playerMpDown, playerApDown, playerHpUp } from '../slices/playerSlice'
 
-import{ initializePoints, charHpDown, charApDown, CharMpDown, charHpUp, charApUp, charMpUp } from '../slices/characterSlice'
-import { playerHpDown, playerMpDown, playerApDown, playerHpUp, playerMpUp, playerApUp } from '../slices/playerSlice'
+import ProgressBar from 'react-bootstrap/ProgressBar'
 
 const Battle = () => {
 
@@ -15,7 +14,7 @@ const Battle = () => {
 
   const player = useSelector(state => state.player)
   const enemy = useSelector(state => state.character)
-  const [intervalId, setIntervalId] = useState(0)
+  let playerNow = (100 / player.hp) * player.maxHp
 
   const enemyAttack = () => {
     dispatch(charApDown(enemy.spirit * 10))
@@ -48,27 +47,27 @@ const Battle = () => {
     defeat()
     const intervalId =  setInterval(() => {
       enemyAttack()
-    }, 5000)
+    }, 3000)
     return () => clearInterval(intervalId)
   }, [enemyAttack])
 
   return(
-    <>
-      <h1>A Fight!</h1>
-      <div>
+    <div className='fight-block'>
+      <h1 className='fight-title'>A Fight!</h1>
+      <div className='enemy-block'>
         <h1>{enemy.name}</h1>
+        <ProgressBar now={enemy.hp} label={`${enemy.hp}`} variant="danger" max={enemy.hp}/>
         <h1>{enemy.hp}</h1>
       </div>
-      <div>
-        <h1>{player.name}</h1>
-        <h1>{player.hp}</h1>
-        <h1>{player.ap}</h1>
-        <h1>{player.mp}</h1>
+      <div className='player-block'>
+      <ProgressBar now={player.hp} label={`${player.hp}`} variant="danger" max={player.maxHp} />
+      <ProgressBar now={player.ap} label={`${player.ap}`} variant="success" max={player.maxAp} />
+      <ProgressBar now={player.mp} label={`${player.mp}`} max={player.maxMp} />
       </div>
       { player.ap <= 0 ? null : <button onClick={() => attack(player, enemy)}>Attack</button> }
       { player.mp === 0 ? null : <button onClick={() => heal(player)}>Heal</button> }
       <button onClick={() => history.push('/location')}>Flee</button>
-    </>
+    </div>
   )
 }
 

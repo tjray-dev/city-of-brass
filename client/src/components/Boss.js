@@ -1,25 +1,24 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
-import Victory from './Victory'
-import Defeat from './Defeat'
+import{ charHpDown, charApDown } from '../slices/characterSlice'
+import { playerHpDown, playerMpDown, playerApDown, playerHpUp } from '../slices/playerSlice'
 
-import{ charHpDown, charApDown, CharMpDown, charHpUp, charApUp, charMpUp } from '../slices/characterSlice'
-import { playerHpDown, playerMpDown, playerApDown, playerHpUp, playerMpUp, playerApUp } from '../slices/playerSlice'
+import ProgressBar from 'react-bootstrap/ProgressBar'
 
 const Boss = () => {
 
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const player = useSelector(state => state.player)
   const enemy = useSelector(state => state.character)
 
-  const interval = () => setInterval(enemyAttack, 5000)
-
   const enemyAttack = () => {
-    dispatch(playerApDown(player.spirit * 10))
-    dispatch(charHpDown(player.body * 10))
-}
+    dispatch(charApDown(enemy.spirit * 10))
+    dispatch(playerHpDown(enemy.body * 10))
+  }
 
   const attack = () => {
       dispatch(playerApDown(player.spirit * 10))
@@ -31,34 +30,42 @@ const Boss = () => {
     dispatch(playerMpDown(player.spirit * 10))
   }
 
+  const victory = () => {
+    if(enemy.hp <= 0){
+      return history.push('/victory')
+    }
+  }
+  const defeat = () => {
+    if(player.hp <= 0){
+      return history.push('/defeat')
+    }
+  }
+
   useEffect(() => {
-    interval()
-  })
-
-  if(enemy.hp <= 0){
-    clearInterval(interval)
-    return <Victory />
-  }
-
-  if(player.hp <= 0){
-    return <Defeat />
-  }
+    victory()
+    defeat()
+    const intervalId =  setInterval(() => {
+      enemyAttack()
+    }, 3000)
+    return () => clearInterval(intervalId)
+  }, [enemyAttack])
 
   return(
-    <>
-      <h1>A Legend Approaches</h1>
-      <h1>{enemy.name}</h1>
-      <h1>{enemy.hp}</h1>
-      <div>
-        <h1>{player.name}</h1>
-        <h1>{player.hp}</h1>
-        <h1>{player.ap}</h1>
-        <h1>{player.mp}</h1>
+    <div className='fight-block'>
+      <h1 className='fight-title'>A Legendary Foe!</h1>
+      <div className='enemy-block'>
+        <h1>{enemy.name}</h1>
+        <ProgressBar now={enemy.hp} label={`${enemy.hp}`} variant="danger"/>
       </div>
-      <button onClick={() => attack(player, enemy)}>Attack</button>
-      <button onClick={() => heal(player)}>Heal</button>
-      <button onClick={() => console.log("Run Away")}>Flee</button>
-    </>
+      <div className='player-block'>
+      <ProgressBar now={player.hp} label={`${player.hp}`} variant="danger" max={player.maxHp} />
+      <ProgressBar now={player.ap} label={`${player.ap}`} variant="success" max={player.maxAp} />
+      <ProgressBar now={player.mp} label={`${player.mp}`} max={player.maxMp} />
+      </div>
+      { player.ap <= 0 ? null : <button onClick={() => attack(player, enemy)}>Attack</button> }
+      { player.mp === 0 ? null : <button onClick={() => heal(player)}>Heal</button> }
+      <button onClick={() => history.push('/location')}>Flee</button>
+    </div>
   )
 }
 

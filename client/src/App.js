@@ -1,9 +1,6 @@
-import { BrowserRouter, Switch, Route, useHistory } from "react-router-dom"
-import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { BrowserRouter, Switch, Route } from "react-router-dom"
 
 import LandingPage from './components/LandingPage'
-import CharacterCreation from './components/CharacterCreation'
 import Oasis from './components/Oasis'
 import Encounter from './components/Encounter'
 import Location from './components/Location'
@@ -12,12 +9,16 @@ import Boss from './components/Boss'
 import NPC from './components/NPC'
 import Victory from './components/Victory'
 import Defeat from './components/Defeat'
+import Inventory from './components/Inventory'
 
 function App() {
 
   return (
     <BrowserRouter>
       <Switch>
+        <Route path='/inventory'>
+          <Inventory />
+        </Route>
         <Route path="/defeat">
           <Defeat />
         </Route>
@@ -41,9 +42,6 @@ function App() {
         </Route>
         <Route path="/lost_oasis">
           <Oasis />
-        </Route>
-        <Route path="/origin">
-          <CharacterCreation />
         </Route>
         <Route path="/">
           <LandingPage />

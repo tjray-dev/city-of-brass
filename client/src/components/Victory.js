@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
@@ -10,6 +10,8 @@ const Victory = () => {
 
   const dispatch = useDispatch()
   const history = useHistory()
+  const loot = useSelector(state => state.inventory.loot)
+  const exp = useSelector(state => state.player.exp)
 
   useEffect(() => {
     dispatch(playerExpUp(10))
@@ -20,6 +22,8 @@ const Victory = () => {
     <>
       <div>
         <h1>Great Job!</h1>
+        <span>{loot.item_name}</span><br />
+        <span>{exp} exp</span>
       </div>
       <div>
         <button onClick={() => history.push('/location')}>Continue On</button>
