@@ -13,7 +13,7 @@ const Location =  () => {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const enemies = useSelector( state => state.location.encounters_remaining )
+  const enemies = useSelector( state => state.location.encountersRemaining )
   const locationId = useSelector( state => state.location.id )
   const name = useSelector( state => state.location.name )
   const description = useSelector( state => state.location.description )
@@ -54,8 +54,9 @@ const Location =  () => {
       <h1>{name}</h1>
       <p>{description}</p>
       <div>
+        <h1>{enemies}</h1>
         { exp >= 100 ? <button onClick={ () => history.push('/lost_oasis') }>Return to the Oasis</button> : null}
-        {enemies > 0 ? <button onClick={ pressOn }>Press on</button> : <button onClick={ () => history.push('/encounter') }>Explore</button>}
+        {enemies === 0 ? <button onClick={ pressOn }>Press on</button> : <button onClick={ () => history.push('/encounter') }>Explore</button>}
         { actionPoints > 0 ? null : <button onClick={() => dispatch(rest())}>Rest</button> }
         <button onClick={ () => history.push('/inventory') }>Inventory</button>
       </div>

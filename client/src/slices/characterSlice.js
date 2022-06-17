@@ -33,8 +33,11 @@ const slice = createSlice({
     mind: 0,
     body: 0,
     spirit: 0,
+    maxHp: 0,
     hp: 0,
+    maxMp: 0,
     mp: 0,
+    maxAp: 0,
     ap: 0
   },
   reducers: {
@@ -64,9 +67,12 @@ const slice = createSlice({
         state.mind = payload.mind
         state.body = payload.body
         state.spirit = payload.spirit
-        state.hp = state.body * 100
-        state.mp = state.mind * 100
-        state.ap = state.spirit * 100
+        state.maxHp = state.body * 100
+        state.maxMp = state.mind * 100
+        state.maxAp = state.spirit * 100
+        state.hp = state.maxHp
+        state.mp = state.maxMp
+        state.ap = state.maxAp
       },
       [fetchBoss.fulfilled]: (state, { payload } ) => {
         state.name = payload.character_name
@@ -74,9 +80,12 @@ const slice = createSlice({
         state.mind = payload.mind
         state.body = payload.body
         state.spirit = payload.spirit
-        state.hp = state.body * 100
-        state.mp = state.mind * 100
-        state.ap = state.spirit * 100
+        state.maxHp = state.body * 100
+        state.maxMp = state.mind * 100
+        state.maxAp = state.spirit * 100
+        state.hp = state.maxHp
+        state.mp = state.maxMp
+        state.ap = state.maxAp
       },
       [fetchNpc.fulfilled]: (state, { payload } ) => {
         state.name = payload.character_name
@@ -84,9 +93,12 @@ const slice = createSlice({
         state.mind = payload.mind
         state.body = payload.body
         state.spirit = payload.spirit
-        state.hp = state.body * 100
-        state.mp = state.mind * 100
-        state.ap = state.spirit * 100
+        state.maxHp = state.body * 100
+        state.maxMp = state.mind * 100
+        state.maxAp = state.spirit * 100
+        state.hp = state.maxHp
+        state.mp = state.maxMp
+        state.ap = state.maxAp
       },
     }
 })

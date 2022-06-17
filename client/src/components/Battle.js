@@ -56,8 +56,7 @@ const Battle = () => {
       <h1 className='fight-title'>A Fight!</h1>
       <div className='enemy-block'>
         <h1>{enemy.name}</h1>
-        <ProgressBar now={enemy.hp} label={`${enemy.hp}`} variant="danger" max={enemy.hp}/>
-        <h1>{enemy.hp}</h1>
+        <ProgressBar now={enemy.hp} label={`${enemy.hp}`} variant="danger" max={enemy.maxHp}/>
       </div>
       <div className='player-block'>
       <ProgressBar now={player.hp} label={`${player.hp}`} variant="danger" max={player.maxHp} />
