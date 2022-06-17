@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
@@ -14,7 +14,6 @@ const Battle = () => {
 
   const player = useSelector(state => state.player)
   const enemy = useSelector(state => state.character)
-  let playerNow = (100 / player.hp) * player.maxHp
 
   const enemyAttack = () => {
     dispatch(charApDown(enemy.spirit * 10))
@@ -49,7 +48,7 @@ const Battle = () => {
       enemyAttack()
     }, 3000)
     return () => clearInterval(intervalId)
-  }, [enemyAttack])
+  })
 
   return(
     <div className='fight-block'>

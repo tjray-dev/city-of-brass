@@ -3,8 +3,6 @@ import { useDispatch } from 'react-redux'
 
 import { origin, background, initializePlayer } from '../slices/playerSlice'
 
-import Form from 'react-bootstrap/Form'
-
 const LandingPage = () => {
 
   const history = useHistory()

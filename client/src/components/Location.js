@@ -6,8 +6,6 @@ import { fetchLocation } from '../slices/locationSlice'
 import { fetchBoss, fetchMonster } from '../slices/characterSlice'
 import { rest } from '../slices/playerSlice'
 
-import Loading from './Loading'
-
 const Location =  () => {
 
   const dispatch = useDispatch()
@@ -20,8 +18,6 @@ const Location =  () => {
 
   const exp = useSelector( state => state.player.exp )
   const actionPoints = useSelector( state => state.player.ap )
-  const spirit = useSelector( state => state.player.spirit )
-  const level = useSelector( state => state.player.level )
 
   const selectEncounter = () => {
     let encounterType = Math.floor(Math.random() * (4 - 1) + 1)
@@ -36,7 +32,7 @@ const Location =  () => {
         dispatch(fetchMonster())
         break;
       default:
-        return <Loading />
+        return console.log('Please Hold.')
     } 
   }
 
@@ -54,7 +50,6 @@ const Location =  () => {
       <h1>{name}</h1>
       <p>{description}</p>
       <div>
-        <h1>{enemies}</h1>
         { exp >= 100 ? <button onClick={ () => history.push('/lost_oasis') }>Return to the Oasis</button> : null}
         {enemies === 0 ? <button onClick={ pressOn }>Press on</button> : <button onClick={ () => history.push('/encounter') }>Explore</button>}
         { actionPoints > 0 ? null : <button onClick={() => dispatch(rest())}>Rest</button> }

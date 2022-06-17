@@ -48,7 +48,7 @@ const Boss = () => {
       enemyAttack()
     }, 3000)
     return () => clearInterval(intervalId)
-  }, [enemyAttack])
+  })
 
   return(
     <div className='fight-block'>

@@ -1,22 +1,13 @@
-import { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
 
-import Loading from './Loading'
+import { useSelector } from 'react-redux'
+
 import NPC from './NPC'
 import Boss from './Boss'
 import Battle from './Battle'
 
-import { fetchMonster, fetchBoss, fetchNpc, initializePoints } from '../slices/characterSlice'
-import { initializePlayer } from '../slices/playerSlice'
-
 const Encounter = () => {
 
-  const dispatch = useDispatch()
-  const history = useHistory()
-
   const character = useSelector(state => state.character)
-  const location = useSelector(state => state.location)
 
   const whichCharacter = () => {
 
@@ -28,12 +19,10 @@ const Encounter = () => {
       case 3:
         return <NPC />
       default: 
-        return <Loading />
+        return console.log('*obnoxious hold music*')
     }
   }
 
-  useEffect(() => {
-  })
   return whichCharacter()
 
 }

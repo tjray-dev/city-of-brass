@@ -18,7 +18,11 @@ const slice = createSlice({
     trinket: [],
     key: [],
   },
-  reducers: {},
+  reducers: {
+    equip: (state, { payload }) => {
+      console.log('item equipped')
+    }
+  },
     extraReducers: {
       [fetchItem.fulfilled]: (state, { payload } ) => {
         switch(payload.item_type){
@@ -45,7 +49,7 @@ const slice = createSlice({
     }
 })
 
-const {} = slice.actions
+const { equip } = slice.actions
 
-export  {} 
+export  { equip } 
 export default slice.reducer
