@@ -1,8 +1,11 @@
 import { useHistory } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+
+import { equipWeapon, equipArmor, equipTrinket, unequip } from '../slices/inventorySlice'
 
 const Inventory = () => {
   
+  const dispatch = useDispatch()
   const history = useHistory()
   const inventory = useSelector( state => state.inventory )
 
@@ -14,7 +17,7 @@ const Inventory = () => {
           <ul>
             <span>Weapons</span>
             { inventory.weapon.map( item => {
-              return <li>{item.item_name}</li>
+              return <><li>{item.item_name}</li><button onClick={() => dispatch(equipWeapon(item))}>Equip</button></>
             })}
           </ul>
         </div>
@@ -22,7 +25,7 @@ const Inventory = () => {
           <ul>
             <span>Armor</span>
             { inventory.armor.map( item => {
-              return <li>{item.item_name}</li>
+              return <><li>{item.item_name}</li><button onClick={() => dispatch(equipArmor(item))}>Equip</button></>
             })}
           </ul>
         </div>
@@ -30,7 +33,7 @@ const Inventory = () => {
           <ul>
             <span>Trinkets</span>
             { inventory.trinket.map( item => {
-              return <li>{item.item_name}</li>
+              return <><li>{item.item_name}</li><button onClick={() => dispatch(equipTrinket(item))}>Equip</button></>
             })}
           </ul>
         </div>

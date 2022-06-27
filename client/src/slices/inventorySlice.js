@@ -13,14 +13,28 @@ const slice = createSlice({
   name: 'inventory',
   initialState: {
     loot: {},
+    equipment: {
+      weapon: {},
+      armor: {},
+      trinket: {},
+    },
     weapon: [],
     armor: [],
     trinket: [],
     key: [],
   },
   reducers: {
-    equip: (state, { payload }) => {
-      console.log('item equipped')
+    equipWeapon: (state, { payload }) => {
+      state.equipment.weapon = payload
+    },
+    equipArmor: (state, { payload }) => {
+      state.equipment.armor = payload
+    },
+    equipTrinket: (state, { payload }) => {
+      state.equipment.trinket = payload
+    },
+    unequip: (state, { payload }) => {
+      state.equipment[payload] = {}
     }
   },
     extraReducers: {
@@ -49,7 +63,7 @@ const slice = createSlice({
     }
 })
 
-const { equip } = slice.actions
+const { equipWeapon, equipArmor, equipTrinket, unequip } = slice.actions
 
-export  { equip } 
+export  { equipWeapon, equipArmor, equipTrinket, unequip} 
 export default slice.reducer
