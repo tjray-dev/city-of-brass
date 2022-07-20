@@ -3,8 +3,9 @@ class CreateItems < ActiveRecord::Migration[6.1]
     create_table :items do |t|
       t.string :item_name
       t.integer :item_type
-      t.integer :item_effect
-      t.integer :item_level
+      t.integer :quality
+      t.integer :condition
+      t.integer :tier 
 
       t.timestamps
     end

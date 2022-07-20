@@ -1,4 +1,4 @@
-class CharacterSerializer < ActiveModel::Serializer
+class MonsterSerializer < ActiveModel::Serializer
   attributes :id, 
              :character_name, 
              :character_type,

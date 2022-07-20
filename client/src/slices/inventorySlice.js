@@ -1,9 +1,90 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
-export const fetchItem = createAsyncThunk(
-  'item/itemStatus',
+export const fetchHelm = createAsyncThunk(
+  'helm/helmStatus',
   async () => {
-    const response = await fetch('/loot')
+    const response = await fetch('/helms')
+    const data = await response.json()
+    return data
+  }
+)
+
+export const fetchArmor = createAsyncThunk(
+  'armor/armorStatus',
+  async () => {
+    const response = await fetch('/armors')
+    const data = await response.json()
+    return data
+  }
+)
+
+export const fetchBelt = createAsyncThunk(
+  'belt/beltStatus',
+  async () => {
+    const response = await fetch('/belts')
+    const data = await response.json()
+    return data
+  }
+)
+
+export const fetchGloves = createAsyncThunk(
+  'gloves/glovesStatus',
+  async () => {
+    const response = await fetch('/gloves')
+    const data = await response.json()
+    return data
+  }
+)
+
+export const fetchPants = createAsyncThunk(
+  'pants/pantsStatus',
+  async () => {
+    const response = await fetch('/pants')
+    const data = await response.json()
+    return data
+  }
+)
+
+export const fetchBoots = createAsyncThunk(
+  'boots/bootsStatus',
+  async () => {
+    const response = await fetch('/boots')
+    const data = await response.json()
+    return data
+  }
+)
+
+export const fetchWeapon = createAsyncThunk(
+  'weapon/weaponStatus',
+  async () => {
+    const response = await fetch('/weapons')
+    const data = await response.json()
+    return data
+  }
+)
+
+export const fetchShield = createAsyncThunk(
+  'shield/shieldStatus',
+  async () => {
+    const response = await fetch('/shields')
+    const data = await response.json()
+    return data
+  }
+)
+
+export const fetchRing = createAsyncThunk(
+  'ring/ringStatus',
+  async () => {
+    const response = await fetch('/rings')
+    const data = await response.json()
+    return data
+  }
+)
+
+export const fetchAmulet = createAsyncThunk(
+  'amulet/amuletStatus',
+  async () => {
+    const response = await fetch('/amulets')
     const data = await response.json()
     return data
   }
@@ -12,58 +93,24 @@ export const fetchItem = createAsyncThunk(
 const slice = createSlice({
   name: 'inventory',
   initialState: {
-    loot: {},
-    equipment: {
-      weapon: {},
-      armor: {},
-      trinket: {},
-    },
-    weapon: [],
-    armor: [],
-    trinket: [],
-    key: [],
   },
-  reducers: {
-    equipWeapon: (state, { payload }) => {
-      state.equipment.weapon = payload
-    },
-    equipArmor: (state, { payload }) => {
-      state.equipment.armor = payload
-    },
-    equipTrinket: (state, { payload }) => {
-      state.equipment.trinket = payload
-    },
-    unequip: (state, { payload }) => {
-      state.equipment[payload] = {}
-    }
-  },
-    extraReducers: {
-      [fetchItem.fulfilled]: (state, { payload } ) => {
-        switch(payload.item_type){
-          case 1:
-            state.weapon.push(payload)
-            state.loot =  payload
-            break;
-          case 2:
-            state.armor.push(payload)
-            state.loot =  payload
-            break;
-          case 3:
-            state.trinket.push(payload)
-            state.loot =  payload
-            break;
-          case 4:
-            state.key.push(payload)
-            state.loot =  payload
-            break;
-          default:
-            console.log('Something\'s wrong, I can feel it')
-        }
+  reducers: {},
+  extraReducers: {
+    [fetchHelm.fulfilled]: (state, { payload } ) => {},
+    [fetchArmor.fulfilled]: (state, { payload } ) => {},
+    [fetchBelt.fulfilled]: (state, { payload } ) => {},
+    [fetchGloves.fulfilled]: (state, { payload } ) => {},
+      [fetchPants.fulfilled]: (state, { payload } ) => {},
+      [fetchWeapon.fulfilled]: (state, { payload } ) => {},
+      [fetchShield.fulfilled]: (state, { payload } ) => {},
+      [fetchBoots.fulfilled]: (state, { payload } ) => {},
+      [fetchRing.fulfilled]: (state, { payload } ) => {},
+      [fetchAmulet.fulfilled]: (state, { payload } ) => {}
       }
     }
-})
+  )
 
-const { equipWeapon, equipArmor, equipTrinket, unequip } = slice.actions
+const {} = slice.actions
 
-export  { equipWeapon, equipArmor, equipTrinket, unequip} 
+export  {} 
 export default slice.reducer

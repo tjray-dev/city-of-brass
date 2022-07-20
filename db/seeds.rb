@@ -1,19 +1,36 @@
-Character.create(character_name: "BaBo the Gabo", character_type: 3, mind: 1, body: 1, spirit: 3)
-Character.create(character_name: "The Mad King", character_type: 1, mind: 1, body: 1, spirit: 3)
-Character.create(character_name: "Brutus, The Thrice Damned", character_type: 2, mind: 1, body: 1, spirit: 3)
-Character.create(character_name: "Knight Errant Malcom", character_type: 2, mind: 1, body: 1, spirit: 3)
-Character.create(character_name: "The Undying Prophet", character_type: 2, mind: 1, body: 1, spirit: 3)
-Character.create(character_name: "Yue The Vengful", character_type: 3, mind: 1, body: 1, spirit: 3)
-Character.create(character_name: "The Assassin of Geide", character_type: 1, mind: 1, body: 1, spirit: 3)
+Item.create(name: 'longsword', item_type: 1)
+Item.create(name: 'shield', item_type: 1)
+Item.create(name: 'leather cap', item_type: 2)
+Item.create(name: 'leather tunic', item_type: 3)
+Item.create(name: 'leather trousers', item_type: 4)
+Item.create(name: 'leather boots', item_type: 5)
+Item.create(name: 'leather belt', item_type: 6)
+Item.create(name: 'copper ring', item_type: 7)
+Item.create(name: 'copper amulet'. item_type: 8)
+puts 'items seeded!'
 
-Item.create(item_name: 'Longsword', item_type: 1, item_effect: 1, item_level: 0)
-Item.create(item_name: 'Shield', item_type: 2, item_effect: 1, item_level: 0)
-Item.create(item_name: 'Brass Breastplate', item_type: 3, item_effect: 1, item_level: 0)
-Item.create(item_name: 'Corroded Key', item_type: 4, item_effect: 1, item_level: 0)
-Item.create(item_name: 'Loose Stones', item_type: 4, item_effect: 1, item_level: 0)
+Characters.create(name: 'Skeleton', character_type: 0, mind: 1, body: 1, 
+                  spirit: 1, strength: 1, agility: 1, fortitude: 1, sanity: 1,
+                 knowlege: 1, reason: 1, faith: 1, will: 1, intuition: 1)
+Characters.create(name: 'Zombie', character_type: 0, mind: 1, body: 1, 
+                  spirit: 1, strength: 1, agility: 1, fortitude: 1, sanity: 1,
+                 knowlege: 1, reason: 1, faith: 1, will: 1, intuition: 1)
+Characters.create(name: 'Warrior', character_type: 0, mind: 1, body: 1, 
+                  spirit: 1, strength: 1, agility: 1, fortitude: 1, sanity: 1,
+                 knowlege: 1, reason: 1, faith: 1, will: 1, intuition: 1)
+Characters.create(name: 'Champion', character_type: 0, mind: 1, body: 1, 
+                  spirit: 1, strength: 1, agility: 1, fortitude: 1, sanity: 1,
+                 knowlege: 1, reason: 1, faith: 1, will: 1, intuition: 1)
+Characters.create(name: 'Minor Abomination', character_type: 0, mind: 1, body: 1, 
+                  spirit: 1, strength: 1, agility: 1, fortitude: 1, sanity: 1,
+                 knowlege: 1, reason: 1, faith: 1, will: 1, intuition: 1)
+Characters.create(name: 'Acolyte', character_type: 0, mind: 1, body: 1, 
+                  spirit: 1, strength: 1, agility: 1, fortitude: 1, sanity: 1,
+                 knowlege: 1, reason: 1, faith: 1, will: 1, intuition: 1)
+Characters.create(name: 'Inquisitor', character_type: 0, mind: 1, body: 1, 
+                  spirit: 1, strength: 1, agility: 1, fortitude: 1, sanity: 1,
+                 knowlege: 1, reason: 1, faith: 1, will: 1, intuition: 1)
+puts 'characters seeded!'
 
-Location.create(location_name: 'Fractured Collanade', location_description: 'Crumbling pillars of sandstone', location_type: 1)
-Location.create(location_name: 'Moonlit Garden', location_description: 'Moonlillies bloom all around', location_type: 1)
-Location.create(location_name: 'Grand Baazar', location_description: 'Broken and Abandoned Stalls abound', location_type: 1)
-Location.create(location_name: 'Sunken Baths', location_description: 'Shattered baths, dry, sunbaked, and barren', location_type: 1)
-Location.create(location_name: 'Chamber of the Fates', location_description: 'Hallowed grounds of dead gods', location_type: 1)
+Location.create(name: 'The Sheets', description: 'a cluster of shacks and moth-eaten stalls that sprawl out from the gates of Old Town.', size: 3)
+puts 'locations seeded!'
