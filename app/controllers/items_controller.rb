@@ -1,8 +1,25 @@
 class ItemsController < ApplicationController
-  before_action :find_item, except: [:loot]
+  before_action :find_item, only: [:show]
+
+  def index
+  end
 
   def show
-    render json: @item, status: :ok
+  end
+
+  def new
+  end
+
+  def create
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
   end
 
   def loot 
@@ -15,4 +32,8 @@ class ItemsController < ApplicationController
   def find_item
     @item = Item.find(params[:id])
   end
+
+  def item_parmas
+  end
+  
 end
