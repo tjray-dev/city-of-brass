@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :origins
   resources :traits
   resources :rooms
   resources :professions
