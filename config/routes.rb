@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :backgrounds
   resources :locations
   resources :items
   resources :character_items, only: [ :create, :show, :update ]
